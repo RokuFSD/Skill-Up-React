@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { authLogin, authRegister } from './authActions';
+import { getAccount } from './accountActions';
+import { operateOnBalance } from './balanceActions.js';
 
 const userToken = localStorage.getItem('userToken') ? localStorage.getItem('userToken') : null;
 
@@ -60,6 +62,28 @@ const authSlice = createSlice({
           state.error = action.error.message;
         }
         state.loading = false;
+      })
+      .addCase(getAccount.fulfilled, (state, action) => {
+        state.user.account = action.payload;
+      })
+      .addCase(getAccount.rejected, (state, action) => {
+        if (action.payload) {
+          state.error = action.payload?.error;
+        } else {
+          state.error = action.error.message;
+        }
+        state.loading = false;
+      })
+      .addCase(operateOnBalance.fulfilled, (state, action) => {
+        state.user.account.money = action.payload.money;
+      })
+      .addCase(operateOnBalance.rejected, (state, action) => {
+        if (action.payload) {
+          state.error = action.payload?.error;
+        } else {
+          state.error = action.error.message;
+        }
+        state.loading = false;
       });
   }
 });
@@ -68,6 +92,8 @@ export const selectUser = (state) => state.auth.user;
 export const selectUserToken = (state) => state.auth.userToken;
 export const selectLoading = (state) => state.auth.loading;
 export const selectError = (state) => state.auth.error;
+
+export const selectBalance = (state) => state.auth?.user?.account?.money;
 
 export const { authLogout } = authSlice.actions;
 
