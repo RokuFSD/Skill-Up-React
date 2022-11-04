@@ -9,7 +9,7 @@ const Header = () => {
     toggle === close ? setToggle(open) : setToggle(close);
   };
   return (
-    <header className="container">
+    <header className="container h-12">
       <nav className="flex fixed top-0 w-full justify-between items-center h-12 px-4 py-4 bg-white z-10">
         <img src={'./assets/alkemy_logo.jpg'} className="logo" alt="logo" />
         <h1 className="font-bold text-2xl">AlkyBank</h1>
