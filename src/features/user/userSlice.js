@@ -4,9 +4,10 @@ import { getAccount } from './accountActions';
 import { deposit, withdraw, transaction } from './balanceActions.js';
 
 const userToken = localStorage.getItem('userToken') ? localStorage.getItem('userToken') : null;
+const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
 
 const initialState = {
-  user: null,
+  user,
   loading: false,
   error: '',
   userToken,
