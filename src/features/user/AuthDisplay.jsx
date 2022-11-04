@@ -3,6 +3,7 @@ import { selectUser, selectLoading, selectError, selectBalance, selectOnMovement
 import { authLogin } from './authActions';
 import { getAccount } from './accountActions.js';
 import { deposit, transaction, withdraw } from './balanceActions.js';
+import { userLogout } from './userSlice.js';
 
 /* This component is used to test the authSlice and authActions. */
 
@@ -54,9 +55,10 @@ function AuthDisplay() {
           <p>
             {user.first_name} {user.last_name}
           </p>
-          {loadingMovement && <h2 className="underline">Loading transaction...</h2>}
+          {loadingMovement && <h2 className='underline'>Loading transaction...</h2>}
           <button onClick={() => dispatch(deposit(incrementAmount))}>Deposit on account</button>
           <button onClick={() => withDraw(reduceAmount)}>Remove from account</button>
+          <button onClick={() => dispatch(userLogout())}>Log out</button>
         </>
       ) : (
         <>

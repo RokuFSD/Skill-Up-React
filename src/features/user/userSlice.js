@@ -19,12 +19,13 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    authLogout: (state) => {
-      localStorage.removeItem('userToken');
+    userLogout: (state) => {
       state.user = null;
       state.userToken = null;
       state.error = '';
       state.loading = false;
+      localStorage.removeItem('userToken');
+      localStorage.removeItem('user');
     }
   },
   extraReducers: (builder) => {
@@ -136,6 +137,6 @@ export const selectError = (state) => state.user.error;
 
 export const selectBalance = (state) => state.user?.user?.account?.money;
 
-export const { authLogout } = userSlice.actions;
+export const { userLogout } = userSlice.actions;
 
 export default userSlice.reducer;
