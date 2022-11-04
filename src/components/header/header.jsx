@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   const close = 'scale-x-0';
@@ -16,20 +17,20 @@ const Header = () => {
         <div
           className={`flex absolute transform ${toggle} origin-right items-end w-60 fixed top-12 right-0 flex-col gap-8 py-12 pr-8 pl-12 shadow-xl rounded-lg ease-in-out transition-all duration-300 bg-gradient-to-tr from-cyan-300 to-cyan-200`}>
           {[
-            ['Home', '/home'],
-            ['Carga de Saldo', '/carga'],
-            ['Gastos', '/gastos'],
+            ['Home', '/'],
+            ['Carga de Saldo', '/balance/add'],
+            ['Gastos', '/balance/spent'],
             ['Balance', '/balance'],
-            ['Movimientos', '/movimientos'],
-            ['Envio de Dinero', '/envio']
+            ['Movimientos', '/movements'],
+            ['Envio de Dinero', '/send']
           ].map(([name, route]) => {
             return (
-              <a
+              <NavLink
+                to={route}
                 key={route}
-                href="#"
                 className="rounded-2xl px-4 py-1 hover:bg-gray-600 hover:text-white">
                 {name}
-              </a>
+              </NavLink>
             );
           })}
         </div>
