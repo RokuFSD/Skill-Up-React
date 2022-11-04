@@ -4,9 +4,10 @@ import { getAccount } from './accountActions';
 import { deposit, withdraw, transaction } from './balanceActions.js';
 
 const userToken = localStorage.getItem('userToken') ? localStorage.getItem('userToken') : null;
+const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
 
 const initialState = {
-  user: null,
+  user,
   loading: false,
   error: '',
   userToken,
@@ -18,12 +19,13 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    authLogout: (state) => {
-      localStorage.removeItem('userToken');
+    userLogout: (state) => {
       state.user = null;
       state.userToken = null;
       state.error = '';
       state.loading = false;
+      localStorage.removeItem('userToken');
+      localStorage.removeItem('user');
     }
   },
   extraReducers: (builder) => {
@@ -135,6 +137,6 @@ export const selectError = (state) => state.user.error;
 
 export const selectBalance = (state) => state.user?.user?.account?.money;
 
-export const { authLogout } = userSlice.actions;
+export const { userLogout } = userSlice.actions;
 
 export default userSlice.reducer;

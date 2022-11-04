@@ -3,6 +3,8 @@ import { selectUser, selectLoading, selectError, selectBalance, selectOnMovement
 import { authLogin } from './authActions';
 import { getAccount } from './accountActions.js';
 import { deposit, transaction, withdraw } from './balanceActions.js';
+import { userLogout } from './userSlice.js';
+import Button from '../../components/button/Button.jsx';
 
 /* This component is used to test the authSlice and authActions. */
 
@@ -49,23 +51,27 @@ function AuthDisplay() {
       <h1>Auth Display</h1>
       {loading && <div>Loading...</div>}
       {user && user.account ? (
-        <>
-          <h1>{balance}</h1>
-          <p>
-            {user.first_name} {user.last_name}
-          </p>
-          {loadingMovement && <h2 className="underline">Loading transaction...</h2>}
-          <button onClick={() => dispatch(deposit(incrementAmount))}>Deposit on account</button>
-          <button onClick={() => withDraw(reduceAmount)}>Remove from account</button>
-        </>
-      ) : (
+          <>
+            <h1>{balance}</h1>
+            <p>
+              {user.first_name} {user.last_name}
+            </p>
+            <Button loading={loadingMovement} onClick={() => dispatch(deposit(incrementAmount))}>
+              Deposit
+            </Button>
+            <Button loading={loadingMovement} onClick={() => withDraw(reduceAmount)} type='neutral'>
+              Withdraw
+            </Button>
+            <Button onClick={() => dispatch(userLogout())} type='error'>
+              Logout
+            </Button>
+          </>
+        ) :
         <>
           <p>Not logged in</p>
-          <button onClick={() => handleLogin()}>Login
-          </button>
-
+          <Button loading={loading} type='success' onClick={() => handleLogin()}>Login</Button>
         </>
-      )}
+      }
     </div>
   );
 }
