@@ -1,7 +1,10 @@
 import { Outlet, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../features/user/userSlice.js';
 
-function ProtectedRoute({ user }) {
-  return user ? <Navigate to={'/login'} /> : <Outlet />;
+function ProtectedRoute() {
+  const user = useSelector(selectUser);
+  return !user ? <Navigate to={'/login'} /> : <Outlet />;
 }
 
 export default ProtectedRoute;
