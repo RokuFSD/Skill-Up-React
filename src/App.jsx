@@ -1,13 +1,13 @@
 import './App.css';
+import Footer from './components/footer/footer';
+import Header from './components/header/header';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={'./alkemy_logo.svg'} className="App-logo" alt="logo" />
-        <p className="font-bold">Bienvenido a AlkyBank</p>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Footer />
+    </>
   );
 }
 

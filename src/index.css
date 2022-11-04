@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .logo {
+    @apply w-12 h-12;
+  }
+}
