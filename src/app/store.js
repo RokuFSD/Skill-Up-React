@@ -1,15 +1,17 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import authReducer from '../features/auth/authSlice';
+import { listenerMiddleware } from './middleware.js';
+import userReducer from '../features/user/userSlice.js';
 
 const rootReducer = combineReducers({
-  auth: authReducer
+  user: userReducer
 });
 
 /* Testing purposes */
 const store = (preloadedState) =>
   configureStore({
     reducer: rootReducer,
-    preloadedState
+    preloadedState,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(listenerMiddleware.middleware)
   });
 
 export default store;

@@ -21,7 +21,6 @@ export const authLogin = createAsyncThunk(
           Authorization: `Bearer ${response.data.accessToken}`
         }
       });
-      localStorage.setItem('token', response.data.accessToken);
       return { token: response.data.accessToken, user: userResponse.data };
     } catch (e) {
       if (!e.response) {
