@@ -11,13 +11,14 @@ const styles = {
   disabled: 'cursor-not-allowed bg-gray-200 text-gray-500 border border-gray-200 hover:text-gray-500'
 };
 
-function Button({ onClick, disabled = false, type = 'primary', loading = false, children, extraClasses = '' }) {
+function Button(
+  { onClick, disabled = false, type = 'primary', loading = false, children, extraClasses = '' }) {
   return (
     <button type='button'
             disabled={disabled}
             onClick={onClick}
-            className={`inline-flex items-center justify-center w-40 p-0 text-base font-medium text-center  rounded-lg shadow-sm cursor-pointer hover:text-white ${disabled || loading ? styles.disabled : styles[type]} ${extraClasses}`}>
-      <span className='relative'>
+            className={`inline-flex items-center justify-center p-0 text-base font-medium text-center  rounded-lg shadow-sm cursor-pointer hover:text-white ${disabled || loading ? styles.disabled : styles[type]} ${extraClasses}`}>
+      <span className='relative flex gap-2'>
         {loading ? <><Loader /> Loading...</> : children}
       </span>
     </button>
