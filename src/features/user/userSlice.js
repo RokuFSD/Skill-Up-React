@@ -136,7 +136,7 @@ export const selectOnMovement = (state) => state.user.onMovement;
 export const selectError = (state) => state.user.error;
 
 export const selectBalance = (state) => state.user?.user?.account?.money;
-export const selectName = (state) => state.user?.user?.name;
+export const selectName = (state) => state.user?.user?.first_name;
 
 export const { userLogout } = userSlice.actions;
 
