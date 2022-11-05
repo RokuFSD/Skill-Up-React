@@ -9,7 +9,7 @@ function BalanceCard() {
   const [isBalanceVisible, setIsBalanceVisible] = useState(true);
   return (
     <div
-      className='w-80 bg-gradient-to-br from-neutral-800 via-neutral-800 to-neutral-600 h-40 flex px-3 pt-3 flex-wrap rounded-xl shadow-xl'>
+      className='w-full bg-gradient-to-br from-neutral-800 via-neutral-800 to-neutral-600 h-40 flex px-3 pt-3 flex-wrap rounded-xl shadow-xl'>
       <div className='w-full'>
         <h2 className='text-md font-semibold text-neutral-500'>Your balance</h2>
       </div>
