@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Header />
-      <main>
+      <main className={"h-full pt-20 -mt-12 w-full"}>
         <Outlet />
       </main>
       <Footer />
