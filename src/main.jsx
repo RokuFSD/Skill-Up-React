@@ -6,31 +6,30 @@ import store from './app/store';
 import ProtectedRoute from './components/routes/ProtectedRoute.jsx';
 import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { BalancePage, MovementsPage, ErrorPage, LoginPage, RegisterPage } from './pages/index.js';
+import { BalancePage, MovementsPage, ErrorPage, LoginPage, RegisterPage, HomePage } from './pages/index.js';
 
 const browserRouter = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
-      // {
-      //   index: true,
-      //   element: <Dashboard />
-      // }
-      // ,
+      {
+        index: true,
+        element: <HomePage />
+      },
       {
         path: 'register',
-        element: <RegisterPage />,
+        element: <RegisterPage />
         // action: registerAction
       },
       {
         path: 'login',
-        element: <LoginPage />,
+        element: <LoginPage />
         // action: loginAction
       },
       {
         path: 'balance',
-        element: <ProtectedRoute/>,
+        element: <ProtectedRoute />,
         children: [
           {
             index: true,
@@ -48,7 +47,7 @@ const browserRouter = createBrowserRouter([
       },
       {
         path: 'movements',
-        element: <ProtectedRoute/>,
+        element: <ProtectedRoute />,
         children: [
           {
             index: true,
@@ -58,7 +57,7 @@ const browserRouter = createBrowserRouter([
       },
       {
         path: 'send',
-        element: <ProtectedRoute/>,
+        element: <ProtectedRoute />,
         children: [
           {
             index: true
