@@ -6,7 +6,15 @@ import store from './app/store';
 import ProtectedRoute from './components/routes/ProtectedRoute.jsx';
 import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { BalancePage, MovementsPage, ErrorPage, LoginPage, RegisterPage, HomePage } from './pages/index.js';
+import {
+  BalancePage,
+  MovementsPage,
+  ErrorPage,
+  LoginPage,
+  RegisterPage,
+  HomePage
+} from './pages/index.js';
+import Login from './components/login/login';
 
 const browserRouter = createBrowserRouter([
   {
@@ -24,7 +32,7 @@ const browserRouter = createBrowserRouter([
       },
       {
         path: 'login',
-        element: <LoginPage />
+        element: <Login />
         // action: loginAction
       },
       {
