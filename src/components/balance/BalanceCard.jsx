@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { selectBalance } from '../../features/user/userSlice.js';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import EyeSvg from '../svg/Eye.jsx';
 import Button from '../button/Button.jsx';
 
@@ -33,9 +34,11 @@ function BalanceCard() {
               )}
             </p>
           </div>
-          <Button style={'premium'} extraClasses={'w-10 h-10 px-0 py-0'}>
-            +
-          </Button>
+          <Link to='balance/add'>
+            <Button style={'premium'} extraClasses={'w-10 h-10 px-0 py-0'}>
+              +
+            </Button>
+          </Link>
         </div>
       </div>
       <div className='w-full text-right h-1'>
