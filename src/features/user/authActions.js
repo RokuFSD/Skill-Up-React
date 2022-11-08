@@ -40,14 +40,28 @@ export const authLogin = createAsyncThunk(
 
 export const authRegister = createAsyncThunk(
   'auth/register',
-  async ({ email, password, passwordConfirmation }, { rejectWithValue }) => {
+  async ({ email, password, firstName, lastName }, { rejectWithValue, dispatch }) => {
     try {
-      const response = await axios.post(`${apiUrl}/auth/register`, {
+      const response = await axios.post(`${apiUrl}/users`, {
+        first_name: firstName,
+        last_name: lastName,
         email,
         password,
-        passwordConfirmation
+        roleId: 2,
+        points: 0
       });
-      return response.data;
+      const loginResponse = await dispatch(authLogin({ email, password }));
+      const accountResponse = await axios.post(
+        `${apiUrl}/accounts`,
+        {
+          creationDate: Date.now(),
+          money: 0,
+          isBlocked: false,
+          userId: response.data.id
+        },
+        { headers: { Authorization: `Bearer ${loginResponse.payload.token}` } }
+      );
+      return accountResponse.data;
     } catch (e) {
       if (!e.response) {
         throw e;
