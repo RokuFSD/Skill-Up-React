@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
-export const apiUrl = 'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com';
+import apiUrl from '../api/index.js';
 
 /*
  * User: {email: string, password: string}
@@ -12,11 +11,11 @@ export const authLogin = createAsyncThunk(
   'auth/login',
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${apiUrl}/auth/login`, {
+      const response = await axios.post(`${apiUrl}auth/login`, {
         email,
         password
       });
-      const userResponse = await axios.get(`${apiUrl}/auth/me`, {
+      const userResponse = await axios.get(`${apiUrl}auth/me`, {
         headers: {
           Authorization: `Bearer ${response.data.accessToken}`
         }
@@ -42,7 +41,7 @@ export const authRegister = createAsyncThunk(
   'auth/register',
   async ({ email, password, passwordConfirmation }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${apiUrl}/auth/register`, {
+      const response = await axios.post(`${apiUrl}auth/register`, {
         email,
         password,
         passwordConfirmation
