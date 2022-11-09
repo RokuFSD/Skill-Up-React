@@ -15,18 +15,13 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       async queryFn(_arg, _api, _extraOptions, fetchWithBQ) {
         let transactions = [];
         let counter = 1;
-        try {
-          while (true) {
-            const { data } = await fetchWithBQ(`transactions/?page=${counter}`, counter);
-            transactions = [...transactions, ...data?.data];
-            if (!data?.nextPage) break;
-            counter++;
-          }
-          console.log(transactions);
-          return transactions;
-        } catch (e) {
-          console.log(e);
+        while (true) {
+          const { data } = await fetchWithBQ(`transactions/?page=${counter}`, counter);
+          transactions = [...transactions, ...data?.data];
+          if (!data?.nextPage) break;
+          counter++;
         }
+        return {data: transactions};
       },
       providesTags: (result) => result ? [{ type: 'Transactions', id: result.id }] : []
     }),
