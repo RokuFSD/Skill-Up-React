@@ -1,14 +1,16 @@
 import BalanceCard from '../balance/BalanceCard.jsx';
 import BalanceActions from '../balance/BalanceActions.jsx';
 import DashBoardTitle from './DashBoardTitle.jsx';
-import TransactionList from '../list/TransactionList.jsx';
-import TransactionCard from '../list/TransactionCard.jsx';
+import TransactionList from '../list/transaction/TransactionList.jsx';
+import TransactionCard from '../list/transaction/TransactionCard.jsx';
 import SkeletonTransaction from '../skeleton/SkeletonTransaction.jsx';
 import Arrow from '../svg/Arrow.jsx';
 import { useGetTransactionsQuery } from '../../features/movement/transactionSlice.js';
 import { Link } from 'react-router-dom';
+import { useGetAllAccountsQuery } from '../../features/movement/accountSlice.js';
 
 function Dashboard() {
+  useGetAllAccountsQuery('');
   const { data, isFetching } = useGetTransactionsQuery(1);
 
   return (
