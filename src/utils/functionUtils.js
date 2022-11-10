@@ -1,5 +1,5 @@
 function formatDate(date) {
-  const options = { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric'};
+  const options = { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' };
   return new Date(date).toLocaleDateString('en-US', options);
 }
 
@@ -8,16 +8,29 @@ function filterData(data, query) {
 }
 
 function filterByType(data, type) {
+  if (!type) return data;
   return data?.filter((item) => item?.type === type);
 }
 
-function orderByDate(data) {
-  return data?.sort((a, b) => new Date(b.date) - new Date(a.date));
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function orderByDate(data, order) {
+  if (!order) return data;
+  return data?.sort((a, b) => {
+    if (order === 'asc') {
+      return new Date(a.date) - new Date(b.date);
+    } else {
+      return new Date(b.date) - new Date(a.date);
+    }
+  });
 }
 
 export {
   formatDate,
   filterData,
   filterByType,
-  orderByDate
-}
+  orderByDate,
+  capitalizeFirstLetter
+};
