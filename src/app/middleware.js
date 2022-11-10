@@ -6,7 +6,6 @@ import { deposit, withdraw, transaction } from '../features/user/balanceActions.
 export const listenerMiddleware = createListenerMiddleware();
 listenerMiddleware.startListening({
   matcher: isAnyOf(
-    getAccount.fulfilled,
     deposit.fulfilled,
     withdraw.fulfilled,
     transaction.fulfilled,
