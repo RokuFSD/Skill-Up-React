@@ -23,7 +23,7 @@ function Searchbar({ setQuery, setTriggeredSearch }) {
   const debouncedHandleChange = debounce(handleChange, 500);
 
   return (
-    <div className='searchbar w-128 relative'>
+    <div className='searchbar w-full relative'>
       <div className='flex absolute inset-y-0 items-center left-0 pl-3 pointer-events-none'>
         <Search />
       </div>
