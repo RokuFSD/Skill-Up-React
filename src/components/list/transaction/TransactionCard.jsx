@@ -1,7 +1,7 @@
 import { memo } from 'react';
-import { formatDate } from '../../utils/functionUtils';
-import ShoppingBag from '../svg/ShoppingBag.jsx';
-import Profile from '../svg/Profile.jsx';
+import { formatDate } from '../../../utils/functionUtils.js';
+import ShoppingBag from '../../svg/ShoppingBag.jsx';
+import Profile from '../../svg/Profile.jsx';
 
 function TransactionCard({ id, date, amount, concept, type, to_account_id, accountId }) {
   const isExpense = type === 'payment';

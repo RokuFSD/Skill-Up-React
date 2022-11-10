@@ -3,8 +3,11 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString('en-US', options);
 }
 
-function filterData(data, query) {
-  return data?.filter((item) => item?.concept.toLowerCase().includes(query.toLowerCase()));
+function filterData(data, query, fields) {
+  return data?.filter((item) => {
+    const values = fields.map((field) => item[field]);
+    return values.some((value) => value.toLowerCase().includes(query.toLowerCase()));
+  });
 }
 
 function filterByType(data, type) {
