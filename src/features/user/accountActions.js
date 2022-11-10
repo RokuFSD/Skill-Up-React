@@ -8,7 +8,6 @@ const accountsPage = async (userId, token, page = '/accounts') => {
       Authorization: `Bearer ${token}`
     }
   });
-
   if (response.data.nextPage !== null) {
     page = response.data.nextPage;
   } else {

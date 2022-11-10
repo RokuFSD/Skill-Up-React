@@ -18,7 +18,7 @@ function BalanceCard() {
         <div className="flex w-full justify-between items-center">
           <div className="relative flex items-center w-3/4">
             <Button
-              type={'transparent'}
+              style={'transparent'}
               extraClasses={'absolute right-0 bottom-2 w-5 h-5'}
               onClick={() => setIsBalanceVisible(!isBalanceVisible)}>
               <EyeSvg open={isBalanceVisible} />
@@ -36,7 +36,7 @@ function BalanceCard() {
               )}
             </p>
           </div>
-          <Button type={'premium'} extraClasses={'w-10 h-10 px-0 py-0'}>
+          <Button style={'premium'} extraClasses={'w-10 h-10 px-0 py-0'}>
             +
           </Button>
         </div>

@@ -17,26 +17,33 @@ function AuthDisplay() {
   const loadingMovement = useSelector(selectOnMovement);
 
   const userMock = {
-    email: 'emiruiz@test.com',
-    password: 'alkemyreact'
+    email: 'johndoe@test.com',
+    password: 'goodPass1.'
   };
 
-  const incrementAmount = {
+
+  const transferTo = {
     amount: 200,
     accountId: 55,
-    concept: 'New test string'
+    concept: 'string',
+    type: 'payment'
+  };
+
+  const depositObject = {
+    amount: 200,
+    concept: 'string',
+    type: 'topup'
   };
 
   const reduceAmount = {
     amount: 300,
     type: 'payment',
-    concept: 'New test string',
-    accountId: 55
+    concept: 'string'
   };
 
-  async function withDraw({ amount, accountId, concept, type }) {
-    await dispatch(withdraw({ amount, accountId }));
-    await dispatch(transaction({ amount, type, concept, accountId, toAccountId: accountId }));
+  async function withDraw({ amount, concept, type }) {
+    await dispatch(withdraw({ amount }));
+    await dispatch(transaction({ amount, type, concept }));
   }
 
   async function handleLogin() {
@@ -56,8 +63,11 @@ function AuthDisplay() {
             <p>
               {user.first_name} {user.last_name}
             </p>
-            <Button loading={loadingMovement} onClick={() => dispatch(deposit(incrementAmount))}>
+            <Button loading={loadingMovement} onClick={() => dispatch(deposit(depositObject))}>
               Deposit
+            </Button>
+            <Button loading={loadingMovement} onClick={() => dispatch(deposit(transferTo))}>
+              Send to account 55
             </Button>
             <Button loading={loadingMovement} onClick={() => withDraw(reduceAmount)} type='neutral'>
               Withdraw

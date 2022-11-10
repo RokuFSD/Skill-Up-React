@@ -22,18 +22,19 @@ const styles = {
 function Button({
   onClick,
   disabled = false,
-  type = 'primary',
+  type= 'button',
+  style = 'primary',
   loading = false,
   children,
   extraClasses = ''
 }) {
   return (
     <button
-      type="button"
+      type={type}
       disabled={disabled}
       onClick={onClick}
       className={`inline-flex items-center justify-center p-0 text-base font-medium text-center  rounded-lg shadow-sm cursor-pointer hover:text-white ${
-        disabled || loading ? styles.disabled : styles[type]
+        disabled || loading ? styles.disabled : styles[style]
       } ${extraClasses}`}>
       <span className="relative flex gap-2">
         {loading ? (
