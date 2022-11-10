@@ -1,7 +1,6 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import EmptyList from './EmptyList.jsx';
-import TransactionCard from './TransactionCard.jsx';
-import TransactionList from './TransactionList.jsx';
+import TransactionList from './transaction/TransactionList.jsx';
 import SkeletonTransaction from '../skeleton/SkeletonTransaction.jsx';
 
 function getScrollBottom(element) {
@@ -11,8 +10,8 @@ function getScrollBottom(element) {
   return scrollHeight - scrollTop - clientHeight;
 }
 
-function InfiniteScroll({ page, items, loadMore, hasMore, fetching }) {
-  const ref = useRef();
+function InfiniteScroll({ page, items, loadMore, hasMore, fetching, element }) {
+  const ref = useRef(null);
 
   useEffect(() => {
     if (!ref?.current || !hasMore) return;
@@ -29,7 +28,7 @@ function InfiniteScroll({ page, items, loadMore, hasMore, fetching }) {
     return () => ref.current?.removeEventListener('scroll', handleScroll);
   }, [items, page, hasMore, ref.current]);
 
-  if (fetching && (items?.length < 2)) {
+  if (fetching && (items?.length < 2 || !items)) {
     return (
       <TransactionList ref={null}>
         {[...Array(5)].map((_, index) => (<SkeletonTransaction key={index} />))}
@@ -39,7 +38,8 @@ function InfiniteScroll({ page, items, loadMore, hasMore, fetching }) {
 
   return (
     <TransactionList ref={ref}>
-      {items?.length === 0 ? <EmptyList /> : items?.map((item) => <TransactionCard key={item?.id} {...item} />)}
+      {items?.length === 0 ? <EmptyList /> : items?.map((item) =>
+        React.cloneElement(element, { key: item.id, ...item }))}
     </TransactionList>
   );
 }
