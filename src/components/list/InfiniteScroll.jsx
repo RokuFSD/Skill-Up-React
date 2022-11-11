@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import EmptyList from './EmptyList.jsx';
-import TransactionList from './transaction/TransactionList.jsx';
+import ItemScroll from './ItemScroll.jsx';
 import SkeletonTransaction from '../skeleton/SkeletonTransaction.jsx';
 
 function getScrollBottom(element) {
@@ -30,17 +30,17 @@ function InfiniteScroll({ page, items, loadMore, hasMore, fetching, element }) {
 
   if (fetching && (items?.length < 2 || !items)) {
     return (
-      <TransactionList ref={null}>
+      <ItemScroll ref={null}>
         {[...Array(5)].map((_, index) => (<SkeletonTransaction key={index} />))}
-      </TransactionList>
+      </ItemScroll>
     );
   }
 
   return (
-    <TransactionList ref={ref}>
+    <ItemScroll ref={ref}>
       {items?.length === 0 ? <EmptyList /> : items?.map((item) =>
         React.cloneElement(element, { key: item.id, ...item }))}
-    </TransactionList>
+    </ItemScroll>
   );
 }
 

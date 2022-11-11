@@ -2,7 +2,7 @@ import {
   infinite,
   useGetAllTransactionsQuery,
   useGetTransactionsQuery
-} from '../features/movement/transactionSlice.js';
+} from '../features/transaction/transactionSlice.js';
 import { filtersArr } from '../components/filter/FilterBar.jsx';
 import { useEffect, useState } from 'react';
 import { filterByType, filterData, orderByDate } from '../utils/functionUtils.js';

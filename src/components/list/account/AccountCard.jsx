@@ -1,6 +1,9 @@
 import Profile from '../../svg/Profile.jsx';
+import { useDispatch } from 'react-redux';
+import { setDestinyAccount } from '../../../features/transaction/transactionSlice.js';
 
 function AccountCard({ userId, userData }) {
+  const dispatch = useDispatch();
 
   return (
     <div className='w-full flex items-center gap-5 py-2 border-b border-neutral-300 h-20 pl-5
@@ -8,7 +11,8 @@ function AccountCard({ userId, userData }) {
     will-change-auto
     hover:cursor-pointer
     hover:scale-105
-    '>
+    '
+         onClick={() => dispatch(setDestinyAccount(userId))}>
       <div className='flex items-center justify-center rounded-full bg-neutral-200 p-3'>
         <Profile />
       </div>

@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 
-const TransactionList = forwardRef(({ children, large = false }, ref) => {
+const ItemScroll = forwardRef(({ children, large = false }, ref) => {
   return (
     <div ref={ref} className={`${large ? 'h-106 w-128' : 'h-128 shadow-xl border'} w-full overflow-y-scroll overflow-x-hidden
       scroll-smooth will-change-scroll
@@ -11,4 +11,4 @@ const TransactionList = forwardRef(({ children, large = false }, ref) => {
   );
 });
 
-export default TransactionList;
+export default ItemScroll;

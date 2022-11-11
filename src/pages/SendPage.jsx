@@ -1,6 +1,6 @@
 import InfiniteScroll from '../components/list/InfiniteScroll.jsx';
 import { useEffect, useState } from 'react';
-import { useGetAllAccountsQuery } from '../features/movement/accountSlice.js';
+import { useGetAllAccountsQuery } from '../features/transaction/accountSlice.js';
 import Searchbar from '../components/list/Searchbar';
 import AccountCard from '../components/list/account/AccountCard.jsx';
 import Button from '../components/button/Button';
