@@ -1,4 +1,4 @@
-function BalancePage(){
+function BalancePage() {
   return (
     <div>
       <h1>Balance Page</h1>
@@ -6,4 +6,4 @@ function BalancePage(){
   );
 }
 
-export default BalancePage
+export default BalancePage;

@@ -32,7 +32,7 @@ export const adminResponse = createAsyncThunk('auth/admin', async () => {
     password: import.meta.env.VITE_ADMIN_PASS
   });
   return response.data;
-})
+});
 
 export const getAccount = createAsyncThunk(
   'accounts/getAccount',
