@@ -6,6 +6,7 @@ import TransactionCard from '../list/transaction/TransactionCard.jsx';
 import SkeletonTransaction from '../skeleton/SkeletonTransaction.jsx';
 import Arrow from '../svg/Arrow.jsx';
 import {
+  useGetAllTransactionsQuery,
   useGetLastThreeAccountsQuery,
   useGetTransactionsQuery
 } from '../../features/transaction/transactionSlice.js';
@@ -14,7 +15,14 @@ import { useGetAllAccountsQuery } from '../../features/transaction/accountSlice.
 import DashboardUsers from './DashboardUsers.jsx';
 
 function Dashboard() {
-  // useGetAllAccountsQuery('');
+  /*
+  * useGetAllAccountsQuery: Fetches all accounts from the API
+  * useGetAllTransactionsQuery: Fetches all transactions from the API
+  * There are invoked in the Dashboard Component for performance reasons (cache of RTK Query)
+  * */
+
+  useGetAllAccountsQuery('');
+  useGetAllTransactionsQuery('')
   const { data, isFetching } = useGetTransactionsQuery(1);
   const { data: lastAccounts, isFetching: lastFetching } = useGetLastThreeAccountsQuery();
 
