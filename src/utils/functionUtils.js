@@ -1,6 +1,6 @@
 function formatDate(date) {
   const options = { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' };
-  return new Date(date).toLocaleDateString('en-US', options);
+  return new Date(date).toLocaleDateString('es-AR', options);
 }
 
 function filterData(data, query, fields) {

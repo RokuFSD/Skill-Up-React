@@ -9,13 +9,13 @@ function BalanceActions() {
       <Link to='/send' className='text-center h-12 w-full'>
         <Button style='primary' extraClasses={'h-full w-full'}>
           <CashSvg />
-          Send
+          Enviar Dinero
         </Button>
       </Link>
       <Link to='/balance/spent' className='text-center h-12 w-full'>
         <Button style='neutral' extraClasses={'h-full w-full'}>
           <ShoppingBagSvg />
-          Expense
+          Nuevo Gasto
         </Button>
       </Link>
     </div>

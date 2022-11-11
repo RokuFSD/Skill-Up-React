@@ -2,10 +2,10 @@ import { capitalizeFirstLetter } from '../../utils/functionUtils.js';
 import { useState } from 'react';
 
 const names = {
-  'desc': 'Newest',
-  'asc': 'Oldest',
-  'topup': 'Topup',
-  'payment': 'Payment'
+  'desc': 'Más reciente',
+  'asc': 'Más antiguo',
+  'topup': 'Cargas',
+  'payment': 'Pagos'
 };
 
 function FilterDropdown({ id, filter, setFilterValue }) {
@@ -22,7 +22,7 @@ function FilterDropdown({ id, filter, setFilterValue }) {
   }
 
   return (
-    <div className='flex w-24 relative'>
+    <div className='flex w-32 h-8 relative'>
       <select value={selectValue}
               className='w-5/6 text-sm rounded'
               onChange={(e) => onChange(e)}>
@@ -34,7 +34,7 @@ function FilterDropdown({ id, filter, setFilterValue }) {
         ))}
       </select>
       {selectValue !== filter?.type && <button
-        className='text-sm absolute right-0 -top-2 text-white bg-indigo-500 rounded-full'
+        className='text-sm absolute right-2 -top-2 text-white bg-indigo-500 rounded-full'
         onClick={() => handleReset()}
       >
         <svg className='w-4 h-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'
