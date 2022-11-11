@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectAccount } from '../../features/user/userSlice';
 import { deposit, transaction, withdraw } from '../../features/user/balanceActions';
 
-const MoneyForm = ({ screen }) => {
+const MoneyForm = ({ screen, children = null }) => {
   const dispatch = useDispatch();
   let userAccount = useSelector(selectAccount);
   let moneyAction;
@@ -45,7 +45,7 @@ const MoneyForm = ({ screen }) => {
   return (
     <div className="container mt-12 flex flex-col justify-center items-center">
       <h1>{moneyAction} dinero</h1>
-      <div className="flex flex-col sm:flex-row items-center justify-around w-full">
+      <div className="flex flex-col sm:flex-row items-center justify-around w-full mt-8 gap-8">
         <Formik
           initialValues={{
             concept,
@@ -87,7 +87,7 @@ const MoneyForm = ({ screen }) => {
             </form>
           )}
         </Formik>
-        <div className="bg-red-600 w-20 h-20"></div>
+        {children}
       </div>
     </div>
   );

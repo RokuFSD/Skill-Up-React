@@ -28,17 +28,18 @@ function SendPage() {
     if (isFetching || !triggeredSearch) return;
     if (query === '') setTriggeredSearch(false);
     const newData = filtered.filter((item) => {
-      return item?.userData['first_name'].toLowerCase().includes(query.toLowerCase()) || item?.userData['last_name'].toLowerCase().includes(query.toLowerCase());
+      return (
+        item?.userData['first_name'].toLowerCase().includes(query.toLowerCase()) ||
+        item?.userData['last_name'].toLowerCase().includes(query.toLowerCase())
+      );
     });
     setFilteredData(newData);
-
   }, [isFetching, query, data, triggeredSearch]);
 
-
   return (
-    <div className='w-128 h-full flex flex-col items-center justify-center gap-8 mx-auto'>
+    <div className="w-full max-w-full h-full flex flex-col items-center justify-center gap-4">
       <Searchbar setQuery={setQuery} setTriggeredSearch={setTriggeredSearch} />
-      <div className='h-144 w-full flex flex-col gap-4'>
+      <div className="h-144 w-full flex flex-col gap-4">
         <InfiniteScroll
           page={0}
           items={triggeredSearch ? filteredData : currentData}
@@ -47,27 +48,25 @@ function SendPage() {
           loadMore={null}
           element={<AccountCard />}
         />
-        {!triggeredSearch && !isFetching &&
-          <div className='flex items-center justify-center h-12'>
+        {!triggeredSearch && !isFetching && (
+          <div className="flex items-center justify-center h-12">
             <Button
-              type='button'
-              style='primary'
+              type="button"
+              style="primary"
               onClick={() => onPageSelected(page - 1)}
-              disabled={page === 0}
-            >
+              disabled={page === 0}>
               Previous
             </Button>
             {page + 1} of {totalPages}
             <Button
-              type='button'
-              style='primary'
+              type="button"
+              style="primary"
               onClick={() => onPageSelected(page + 1)}
-              disabled={page + 1 === totalPages}
-            >
+              disabled={page + 1 === totalPages}>
               Next
             </Button>
           </div>
-        }
+        )}
       </div>
     </div>
   );

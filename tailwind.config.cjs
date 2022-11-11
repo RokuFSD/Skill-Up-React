@@ -9,10 +9,13 @@ module.exports = {
         '4/5': '80%'
       },
       minWidth: {
+        '1/2': '50%',
+        '3/4': '75%',
+        '4/5': '80%',
         xs: '328px'
       },
       minHeight: {
-        main: '80vh',
+        main: '80vh'
       },
       /*Make main height */
       height: {
@@ -42,9 +45,7 @@ module.exports = {
       }
     }
   },
-  plugins: [
-    require('tailwind-scrollbar')
-  ],
+  plugins: [require('tailwind-scrollbar')],
   variants: {
     scrollbar: ['rounded']
   }
