@@ -31,15 +31,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // const accounts = async () => {
-  //   try {
-  //     const accounts = await dispatch(getAccount());
-  //     return accounts;
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // accounts();
   const handleScreen = () => {
     screen === 'login' ? setScreen('register') : setScreen('login');
   };
@@ -74,7 +65,7 @@ const Login = () => {
     } else {
       const { email, password } = formValues;
       response = await dispatch(authLogin({ email, password }));
-      dispatch(adminResponse());
+      await dispatch(adminResponse());
       dispatch(getAccount());
       response.type === 'auth/login/fulfilled' ? navigate('/') : alert('Credenciales Incorrectas');
     }

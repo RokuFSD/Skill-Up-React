@@ -1,5 +1,5 @@
 import { createListenerMiddleware, isAnyOf } from '@reduxjs/toolkit';
-import { adminResponse } from '../features/user/accountActions.js';
+import { adminResponse, getAccount } from '../features/user/accountActions.js';
 import { authRegister } from '../features/user/authActions.js';
 import { deposit, withdraw, transaction } from '../features/user/balanceActions.js';
 
@@ -10,7 +10,8 @@ listenerMiddleware.startListening({
     deposit.fulfilled,
     withdraw.fulfilled,
     transaction.fulfilled,
-    authRegister.fulfilled
+    authRegister.fulfilled,
+    getAccount.fulfilled,
   ),
   effect: (action, listenerApi) => {
     localStorage.setItem('user', JSON.stringify(listenerApi.getState().user.user));

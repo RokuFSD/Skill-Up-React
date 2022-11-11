@@ -14,7 +14,7 @@ import { useGetAllAccountsQuery } from '../../features/transaction/accountSlice.
 import DashboardUsers from './DashboardUsers.jsx';
 
 function Dashboard() {
-  useGetAllAccountsQuery('');
+  // useGetAllAccountsQuery('');
   const { data, isFetching } = useGetTransactionsQuery(1);
   const { data: lastAccounts, isFetching: lastFetching } = useGetLastThreeAccountsQuery();
 

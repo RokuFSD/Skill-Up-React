@@ -3,15 +3,17 @@ import { authLogin, authRegister } from './authActions';
 import { adminResponse, getAccount } from './accountActions';
 import { deposit, withdraw, transaction } from './balanceActions.js';
 
-const adminToken = localStorage.getItem('adminToken') || null;
+const adminToken = localStorage.getItem('adminToken') ? localStorage.getItem('adminToken') : null;
 const userToken = localStorage.getItem('userToken') ? localStorage.getItem('userToken') : null;
 const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
+const account = localStorage.getItem('account') ? JSON.parse(localStorage.getItem('account')) : null;
+
 /* const account = localStorage.getItem('account')
   ? JSON.parse(localStorage.getItem('account'))
   : null; */
 
 const initialState = {
-  account: {},
+  account,
   accounts: [],
   user,
   loading: false,
@@ -31,6 +33,7 @@ const userSlice = createSlice({
       state.userToken = null;
       state.error = '';
       state.loading = false;
+      localStorage.removeItem('account')
       localStorage.removeItem('userToken');
       localStorage.removeItem('user');
     }
