@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import apiUrl from '../../utils/api';
-import { adminResponse } from './accountActions';
+import apiUrl from '../api/index.js';
 
 export const deposit = createAsyncThunk(
   'balance/deposit',

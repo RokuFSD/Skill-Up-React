@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Button from '../button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { authLogin, authRegister } from '../../features/user/authActions';
-import { getAccount } from '../../features/user/accountActions';
+import { adminResponse, getAccount } from '../../features/user/accountActions';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { selectUserToken } from '../../features/user/userSlice';
 import MyTextInput from '../myTextInput/myTextInput';
@@ -49,6 +49,7 @@ const Login = () => {
     } else {
       const { email, password } = formValues;
       response = await dispatch(authLogin({ email, password }));
+      await dispatch(adminResponse());
       dispatch(getAccount());
       response.type === 'auth/login/fulfilled' ? navigate('/') : alert('Credenciales Incorrectas');
     }
@@ -102,14 +103,27 @@ const Login = () => {
                     <MyTextInput label="Apellido" name="lastName" type="text" placeholder="" />
                   </>
                 )}
-                <MyTextInput label="Email" name="email" type="email" placeholder="" />
-                <MyTextInput label="Contraseña" name="password" type="password" placeholder="" />
+                <MyTextInput
+                  label="Email"
+                  name="email"
+                  type="email"
+                  placeholder=""
+                  autoComplete="email"
+                />
+                <MyTextInput
+                  label="Contraseña"
+                  name="password"
+                  type="password"
+                  placeholder=""
+                  autoComplete="current-password"
+                />
 
                 {screen === 'register' && (
                   <MyTextInput
                     label="Confirmar Contraseña"
                     name="confirmPass"
                     type="password"
+                    autoComplete="current-password"
                     placeholder=""
                   />
                 )}

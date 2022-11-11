@@ -1,17 +1,16 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { listenerMiddleware } from './middleware.js';
+import { configureStore } from '@reduxjs/toolkit';
+import { listenerMiddleware, adminListenerMiddleware } from './middleware.js';
+import { apiSlice } from '../features/api/apiSlice.js';
 import userReducer from '../features/user/userSlice.js';
+import transactionReducer from '../features/transaction/transactionSlice.js';
 
-const rootReducer = combineReducers({
-  user: userReducer
+const store = configureStore({
+  reducer: {
+    [apiSlice?.reducerPath]: apiSlice?.reducer,
+    user: userReducer,
+    transaction: transactionReducer,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice?.middleware, listenerMiddleware.middleware, adminListenerMiddleware.middleware),
 });
-
-/* Testing purposes */
-const store = (preloadedState) =>
-  configureStore({
-    reducer: rootReducer,
-    preloadedState,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(listenerMiddleware.middleware)
-  });
 
 export default store;

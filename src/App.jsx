@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className={'flex flex-col items-center mb-8 w-full'}>
+      <main className={'flex flex-col items-center w-full h-full pb-20'}>
         <Outlet />
       </main>
       <Footer />

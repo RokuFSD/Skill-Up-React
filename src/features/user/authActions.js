@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
-export const apiUrl = 'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com';
+import apiUrl from '../api/index.js';
 
 /*
  * User: {email: string, password: string}

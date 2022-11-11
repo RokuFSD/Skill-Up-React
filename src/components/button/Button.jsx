@@ -16,7 +16,7 @@ const styles = {
     'bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-500 text-yellow-100 border border-yellow-500 px-4 py-1 rounded-full m-1',
   transparent: 'bg-transparent text-gray-100',
   disabled:
-    'cursor-not-allowed bg-gray-200 text-gray-500 border border-gray-200 hover:text-gray-500 px-4 py-1 rounded-full m-1'
+    'cursor-not-allowed bg-gray-200 text-gray-500 border border-gray-200 px-4 py-1 rounded-full m-1'
 };
 
 function Button({
@@ -33,7 +33,7 @@ function Button({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={`inline-flex items-center justify-center p-0 text-base font-medium text-center  rounded-lg shadow-sm cursor-pointer hover:text-white ${
+      className={`inline-flex items-center justify-center p-0 text-base font-medium text-center  rounded-lg shadow-sm cursor-pointer ${
         disabled || loading ? styles.disabled : styles[style]
       } ${extraClasses}`}>
       <span className="relative flex gap-2">
