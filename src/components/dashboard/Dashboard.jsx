@@ -19,15 +19,15 @@ function Dashboard() {
   const { data: lastAccounts, isFetching: lastFetching } = useGetLastThreeAccountsQuery();
 
   return (
-    <section className='flex flex-col gap-12 px-8 w-full h-full items-center justify-center'>
+    <section className='flex flex-col gap-12 px-8 w-full h-full items-center'>
       <DashBoardTitle />
-      <div className='flex w-full justify-center gap-10 '>
-        <div className='w-full flex flex-col flex-wrap xs:flex-col justify-center items-center'>
-          <div className='bg-neutral-50 flex flex-col gap-12 shadow-2xl p-4 max-w-sm min-w-xs xs:w-1/2 h-72 rounded-lg'>
+      <div className='flex flex-col w-full gap-8'>
+        <div className='flex flex-col flex-wrap justify-between gap-8'>
+          <div className='w-full bg-neutral-50 flex flex-col gap-12 p-4 rounded-lg shadow-lg'>
             <BalanceCard />
             <BalanceActions />
           </div>
-          <div className='bg-neutral-50 flex shadow-lg p-4 w-96 h-40 rounded-lg flex-wrap'>
+          <div className='w-full bg-neutral-50 flex p-4 h-40 rounded-lg flex-wrap shadow-lg'>
             <h2 className='text-xl font-semibold text-neutral-500 basis-full'>Send again</h2>
             <DashboardUsers isFetching={lastFetching} accounts={lastAccounts} />
           </div>
@@ -56,7 +56,7 @@ function Dashboard() {
         </div>
       </div>
     </section>
-);
+  );
 }
 
 export default Dashboard;

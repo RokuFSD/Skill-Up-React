@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className={'w-full h-main'}>
+      <main className={'w-full h-full pb-20'}>
         <Outlet />
       </main>
       <Footer />

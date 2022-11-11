@@ -55,7 +55,6 @@ const browserRouter = createBrowserRouter([
       },
       {
         path: 'movements',
-        element: <ProtectedRoute />,
         children: [
           {
             index: true,

@@ -8,7 +8,7 @@ function TransactionCard({ id, date, amount, concept, type, to_account_id, accou
   const isTransfer = to_account_id !== accountId;
 
   return (
-    <div className='w-full flex items-center gap-5 py-2 border-b border-neutral-300 h-20 pl-5'>
+    <div className='w-full flex items-center gap-5 py-2 border-b border-neutral-300 h-20'>
       <div className='flex items-center justify-center rounded-full bg-neutral-200 p-3'>
         {isTransfer ? (
           <ShoppingBag />

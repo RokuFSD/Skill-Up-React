@@ -74,8 +74,8 @@ const Login = () => {
     } else {
       const { email, password } = formValues;
       response = await dispatch(authLogin({ email, password }));
-      await dispatch(adminResponse());
-      await dispatch(getAccount());
+      dispatch(adminResponse());
+      dispatch(getAccount());
       response.type === 'auth/login/fulfilled' ? navigate('/') : alert('Credenciales Incorrectas');
     }
   }
