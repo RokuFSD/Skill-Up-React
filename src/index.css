@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1 {
+    @apply ml-2 text-2xl;
+  }
+}
+
 @layer components {
   .logo {
     @apply w-12 h-12;
