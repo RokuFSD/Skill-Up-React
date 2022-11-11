@@ -10,11 +10,11 @@ import {
   BalancePage,
   MovementsPage,
   ErrorPage,
-  LoginPage,
   RegisterPage,
   HomePage
 } from './pages/index.js';
 import Login from './components/login/login';
+import SendPage from './pages/SendPage.jsx';
 
 const browserRouter = createBrowserRouter([
   {
@@ -55,7 +55,6 @@ const browserRouter = createBrowserRouter([
       },
       {
         path: 'movements',
-        element: <ProtectedRoute />,
         children: [
           {
             index: true,
@@ -68,8 +67,8 @@ const browserRouter = createBrowserRouter([
         element: <ProtectedRoute />,
         children: [
           {
-            index: true
-            // element: <SendPage />,
+            index: true,
+            element: <SendPage />
           }
         ]
       }
@@ -80,7 +79,7 @@ const browserRouter = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Provider store={store()}>
+    <Provider store={store}>
       <RouterProvider router={browserRouter}>
         <App />
       </RouterProvider>

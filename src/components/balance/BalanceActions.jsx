@@ -6,7 +6,7 @@ import CashSvg from '../svg/Cash.jsx';
 function BalanceActions() {
   return (
     <div className='w-full flex items-center justify-center gap-2'>
-      <Link to='/balance/add' className='text-center h-12 w-full'>
+      <Link to='/send' className='text-center h-12 w-full'>
         <Button style='primary' extraClasses={'h-full w-full'}>
           <CashSvg />
           Send

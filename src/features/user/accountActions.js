@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import apiUrl from '../../utils/api';
+import apiUrl from '../api/index.js';
 
 const accountsPage = async (userId, token, page = '/accounts') => {
   const response = await axios.get(apiUrl + page, {
@@ -26,21 +26,20 @@ const accountsPage = async (userId, token, page = '/accounts') => {
   }
 };
 
-const loginResponse = async () => {
+export const adminResponse = createAsyncThunk('auth/admin', async () => {
   const response = await axios.post(`${apiUrl}/auth/login`, {
     email: import.meta.env.VITE_ADMIN_USER,
     password: import.meta.env.VITE_ADMIN_PASS
   });
   return response.data;
-};
+})
 
 export const getAccount = createAsyncThunk(
   'accounts/getAccount',
   async (_, { rejectWithValue, getState }) => {
     try {
       const userId = getState().user.user.id;
-      const login = await loginResponse();
-      const response = await accountsPage(userId, login.accessToken);
+      const response = await accountsPage(userId, getState().user.adminToken);
       return response;
     } catch (e) {
       if (!e.response) {

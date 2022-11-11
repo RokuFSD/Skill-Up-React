@@ -1,21 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { authLogin, authRegister } from './authActions';
-import { getAccount } from './accountActions';
+import { adminResponse, getAccount } from './accountActions';
 import { deposit, withdraw, transaction } from './balanceActions.js';
 
+const adminToken = localStorage.getItem('adminToken') ? localStorage.getItem('adminToken') : null;
 const userToken = localStorage.getItem('userToken') ? localStorage.getItem('userToken') : null;
 const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
+const account = localStorage.getItem('account') ? JSON.parse(localStorage.getItem('account')) : null;
+
 /* const account = localStorage.getItem('account')
   ? JSON.parse(localStorage.getItem('account'))
   : null; */
 
 const initialState = {
-  account: {},
+  account,
   accounts: [],
   user,
   loading: false,
   error: '',
   userToken,
+  adminToken,
   success: false, // for monitoring the registration process
   onMovement: false // for monitoring a deposit - withdraw - transaction process
 };
@@ -29,6 +33,7 @@ const userSlice = createSlice({
       state.userToken = null;
       state.error = '';
       state.loading = false;
+      localStorage.removeItem('account')
       localStorage.removeItem('userToken');
       localStorage.removeItem('user');
     }
@@ -137,6 +142,9 @@ const userSlice = createSlice({
           state.error = action.error.message;
         }
         state.onMovement = false;
+      })
+      .addCase(adminResponse.fulfilled, (state, action) => {
+        state.adminToken = action.payload.accessToken;
       });
   }
 });
@@ -144,13 +152,9 @@ const userSlice = createSlice({
 export const selectAccounts = (state) => state.accounts;
 export const selectUser = (state) => state.user.user;
 export const selectUserToken = (state) => state.user.userToken;
-export const selectLoading = (state) => state.user.loading;
 export const selectOnMovement = (state) => state.user.onMovement;
-export const selectError = (state) => state.user.error;
-export const selectAccount = (state) => state.user.user.account;
 export const selectBalance = (state) => state.user.account?.money;
 export const selectName = (state) => state.user?.user?.first_name;
-export const selectLastName = (state) => state.user?.user?.last_name;
 
 export const { userLogout } = userSlice.actions;
 
