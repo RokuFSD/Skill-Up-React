@@ -3,6 +3,9 @@ module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      minWidth: {
+        xs: '328px'
+      },
       minHeight: {
         main: '80vh',
       },
@@ -20,6 +23,7 @@ module.exports = {
         128: '32rem'
       },
       screens: {
+        xxs: '338px',
         xs: '530px'
       },
       animation: {

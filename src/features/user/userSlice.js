@@ -5,8 +5,13 @@ import { deposit, withdraw, transaction } from './balanceActions.js';
 
 const userToken = localStorage.getItem('userToken') ? localStorage.getItem('userToken') : null;
 const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
+/* const account = localStorage.getItem('account')
+  ? JSON.parse(localStorage.getItem('account'))
+  : null; */
 
 const initialState = {
+  account: {},
+  accounts: [],
   user,
   loading: false,
   error: '',
@@ -27,6 +32,9 @@ const userSlice = createSlice({
       localStorage.removeItem('userToken');
       localStorage.removeItem('user');
     }
+    /* getAccount: (state, action) => {
+      state.accounts = [...state.accounts, ...action.payload];
+    } */
   },
   extraReducers: (builder) => {
     builder
@@ -35,8 +43,9 @@ const userSlice = createSlice({
         state.loading = true;
         state.error = '';
       })
-      .addCase(authRegister.fulfilled, (state) => {
+      .addCase(authRegister.fulfilled, (state, action) => {
         state.loading = false;
+        state.account = action.payload;
         state.success = true; // registration was successful
       })
       .addCase(authRegister.rejected, (state, action) => {
@@ -68,7 +77,11 @@ const userSlice = createSlice({
       })
       /* Get user account */
       .addCase(getAccount.fulfilled, (state, action) => {
-        state.user.account = action.payload;
+        state.account = action.payload;
+        state.onMovement = false;
+      })
+      .addCase(getAccount.pending, (state) => {
+        state.onMovement = true;
       })
       .addCase(getAccount.rejected, (state, action) => {
         if (action.payload) {
@@ -124,19 +137,20 @@ const userSlice = createSlice({
           state.error = action.error.message;
         }
         state.onMovement = false;
-      })
-    ;
+      });
   }
 });
 
+export const selectAccounts = (state) => state.accounts;
 export const selectUser = (state) => state.user.user;
 export const selectUserToken = (state) => state.user.userToken;
 export const selectLoading = (state) => state.user.loading;
 export const selectOnMovement = (state) => state.user.onMovement;
 export const selectError = (state) => state.user.error;
-
-export const selectBalance = (state) => state.user?.user?.account?.money;
+export const selectAccount = (state) => state.user.user.account;
+export const selectBalance = (state) => state.user.account?.money;
 export const selectName = (state) => state.user?.user?.first_name;
+export const selectLastName = (state) => state.user?.user?.last_name;
 
 export const { userLogout } = userSlice.actions;
 
