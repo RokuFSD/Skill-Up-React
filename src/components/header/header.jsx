@@ -38,10 +38,9 @@ const Header = () => {
         <div
           className={`flex absolute transform ${toggle} origin-top-right items-end w-60 h-screen fixed top-12 right-0 flex-col gap-8 py-12 pr-8 pl-12 shadow-xl rounded-b-lg ease-in-out transition-all duration-300 bg-gradient-to-tr from-cyan-100 to-cyan-400`}>
           {[
-            ['Home', '/'],
+            ['Balance', '/'],
             ['Carga de Saldo', '/balance/add'],
             ['Gastos', '/balance/spent'],
-            ['Balance', '/balance'],
             ['Movimientos', '/movements'],
             ['Envio de Dinero', '/send'],
             ['Cerrar Sesion', '/login']

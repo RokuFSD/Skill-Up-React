@@ -4,7 +4,7 @@ import apiUrl from '../api/index.js';
 
 /*
  * User: {email: string, password: string}
- * Returns: {token: string, user: {id: string, email: string}}
+ * Returns: {token: string, user: user data object}
  *  */
 
 export const authLogin = createAsyncThunk(

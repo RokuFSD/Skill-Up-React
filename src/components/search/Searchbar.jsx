@@ -29,7 +29,7 @@ function Searchbar({ setQuery, setTriggeredSearch }) {
       </div>
       <input
         className='w-full h-12 pl-12 rounded-md focus:outline-none focus:ring focus:ring-blue-200 focus:border-blue-500'
-        type='text' placeholder='Search'
+        type='text' placeholder='Buscar'
         onChange={debouncedHandleChange} />
     </div>
   );
