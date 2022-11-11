@@ -4,12 +4,15 @@ import apiUrl from './index.js';
 export const apiSlice = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
-      baseUrl: apiUrl, prepareHeaders: (headers, { getState }) => {
-        const token = getState().user.userToken;
-        if (token) headers.set('authorization', `Bearer ${token}`);
-        return headers;
+        baseUrl: apiUrl, prepareHeaders: (headers, { getState }) => {
+          const token = getState().user.userToken;
+          if (token) {
+            headers.set('authorization', `Bearer ${token}`);
+          }
+          return headers;
+        }
       }
-    }),
+    ),
     tagTypes: ['Transaction', 'Account'],
     endpoints: () => ({})
   })

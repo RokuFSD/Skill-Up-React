@@ -24,15 +24,15 @@ function MovementsPage() {
   const {
     data: allData,
     isFetching: isAllFetching
-  } = useGetAllTransactionsQuery('', { skip: !triggeredSearch || !data?.nextPage });
+  } = useGetAllTransactionsQuery('', { skip: !triggeredSearch });
 
   let result = infinite(page);
 
   useEffect(() => {
     let filtered = allData;
-    if (isAllFetching || !triggeredSearch) return;
+    if (isAllFetching) return;
     if (query === '') setTriggeredSearch(false);
-    if (triggeredFilter && triggeredSearch) setTriggeredSearch(true);
+    if (triggeredFilter) setTriggeredSearch(true);
     filtered = orderByDate(filtered?.slice(), filters[0].value);
     filtered = filterByType(filtered, filters[1].value);
     setFilteredData(filterData(filtered, query, ['concept']));
@@ -48,14 +48,13 @@ function MovementsPage() {
                    setTriggeredFilter={setTriggeredFilter}
         />
       </div>
-
       <InfiniteScroll
         page={page}
         items={triggeredSearch ? filteredData : result}
         hasMore={triggeredSearch ? false : data?.nextPage}
         fetching={triggeredSearch ? isAllFetching : (isFetching || isNextDataFetching)}
         loadMore={triggeredSearch ? null : () => setPage(page + 1)}
-        element={<TransactionCard/>}
+        element={<TransactionCard />}
       />
 
     </div>

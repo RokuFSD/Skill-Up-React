@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { listenerMiddleware } from './middleware.js';
+import { listenerMiddleware, adminListenerMiddleware } from './middleware.js';
 import { apiSlice } from '../features/api/apiSlice.js';
 import userReducer from '../features/user/userSlice.js';
 import transactionReducer from '../features/transaction/transactionSlice.js';
@@ -10,7 +10,7 @@ const store = configureStore({
     user: userReducer,
     transaction: transactionReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice?.middleware, listenerMiddleware.middleware)
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice?.middleware, listenerMiddleware.middleware, adminListenerMiddleware.middleware),
 });
 
 export default store;

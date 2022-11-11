@@ -11,11 +11,11 @@ export const authLogin = createAsyncThunk(
   'auth/login',
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${apiUrl}auth/login`, {
+      const response = await axios.post(`${apiUrl}/auth/login`, {
         email,
         password
       });
-      const userResponse = await axios.get(`${apiUrl}auth/me`, {
+      const userResponse = await axios.get(`${apiUrl}/auth/me`, {
         headers: {
           Authorization: `Bearer ${response.data.accessToken}`
         }
