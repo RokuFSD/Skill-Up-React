@@ -6,7 +6,7 @@ import {
 import { filtersArr } from '../components/filter/FilterBar.jsx';
 import { useEffect, useState } from 'react';
 import { filterByType, filterData, orderByDate } from '../utils/functionUtils.js';
-import Searchbar from '../components/list/Searchbar.jsx';
+import Searchbar from '../components/search/Searchbar.jsx';
 import FilterBar from '../components/filter/FilterBar.jsx';
 import InfiniteScroll from '../components/list/InfiniteScroll.jsx';
 import TransactionCard from '../components/list/transaction/TransactionCard';

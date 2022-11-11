@@ -1,29 +1,21 @@
 import BalanceCard from '../balance/BalanceCard.jsx';
 import BalanceActions from '../balance/BalanceActions.jsx';
 import DashBoardTitle from './DashBoardTitle.jsx';
-import ItemScroll from '../list/ItemScroll.jsx';
-import TransactionCard from '../list/transaction/TransactionCard.jsx';
-import SkeletonTransaction from '../skeleton/SkeletonTransaction.jsx';
 import Arrow from '../svg/Arrow.jsx';
 import {
-  useGetAllTransactionsQuery,
   useGetLastThreeAccountsQuery,
-  useGetTransactionsQuery
 } from '../../features/transaction/transactionSlice.js';
 import { Link } from 'react-router-dom';
 import { useGetAllAccountsQuery } from '../../features/transaction/accountSlice.js';
 import DashboardUsers from './DashboardUsers.jsx';
+import MiniList from '../list/MiniList.jsx';
 
 function Dashboard() {
   /*
   * useGetAllAccountsQuery: Fetches all accounts from the API
-  * useGetAllTransactionsQuery: Fetches all transactions from the API
-  * There are invoked in the Dashboard Component for performance reasons (cache of RTK Query)
+  * Is invoked in the Dashboard Component for performance reasons (cache of RTK Query)
   * */
-
   useGetAllAccountsQuery('');
-  useGetAllTransactionsQuery('')
-  const { data, isFetching } = useGetTransactionsQuery(1);
   const { data: lastAccounts, isFetching: lastFetching } = useGetLastThreeAccountsQuery();
 
   return (
@@ -42,19 +34,7 @@ function Dashboard() {
         </div>
         <div className='bg-neutral-50 p-4 rounded-xl shadow-xl'>
           <h2 className='text-xl font-semibold text-neutral-500'>Last activity</h2>
-          {isFetching ? (
-            <ItemScroll large>
-              {[...Array(5)].map((_, index) => (
-                <SkeletonTransaction key={index} />
-              ))}
-            </ItemScroll>
-          ) : (
-            <ItemScroll large>
-              {data.data?.slice(0, 5).map((transaction) => (
-                <TransactionCard key={transaction.id} {...transaction} />
-              ))}
-            </ItemScroll>
-          )}
+          <MiniList/>
           <Link to={'/movements'} className='text-indigo-600 font-semibold hover:text-indigo-400 transition-all'>
             <div className='w-full flex items-center justify-between'>
               <p className='text-right'>See all your movements</p>

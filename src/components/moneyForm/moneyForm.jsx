@@ -87,7 +87,6 @@ const MoneyForm = ({ screen }) => {
             </form>
           )}
         </Formik>
-        <div className="bg-red-600 w-20 h-20"></div>
       </div>
     </div>
   );
