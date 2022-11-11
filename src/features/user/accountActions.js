@@ -26,12 +26,12 @@ const accountsPage = async (userId, token, page = '/accounts') => {
   }
 };
 
-const loginResponse = async () => {
+export const adminResponse = async () => {
   const response = await axios.post(`${apiUrl}/auth/login`, {
     email: import.meta.env.VITE_ADMIN_USER,
     password: import.meta.env.VITE_ADMIN_PASS
   });
-  return response.data;
+  return response.data.accessToken;
 };
 
 export const getAccount = createAsyncThunk(
@@ -39,8 +39,8 @@ export const getAccount = createAsyncThunk(
   async (_, { rejectWithValue, getState }) => {
     try {
       const userId = getState().user.user.id;
-      const login = await loginResponse();
-      const response = await accountsPage(userId, login.accessToken);
+      const adminToken = await adminResponse();
+      const response = await accountsPage(userId, adminToken);
       return response;
     } catch (e) {
       if (!e.response) {

@@ -1,4 +1,4 @@
-import { Formik, useField } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import React, { useState } from 'react';
 import Button from '../button/Button';
@@ -7,23 +7,7 @@ import { authLogin, authRegister } from '../../features/user/authActions';
 import { getAccount } from '../../features/user/accountActions';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { selectUserToken } from '../../features/user/userSlice';
-
-const MyTextInput = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
-  return (
-    <div className="flex flex-col rounded-2xl py-3">
-      <label className="mx-1 text-lg" htmlFor={props.id || props.name}>
-        {label}
-      </label>
-      <input
-        className="border border-gray-400 rounded-full px-2 py-2 w-full sm:w-[80%]"
-        {...field}
-        {...props}
-      />
-      {meta.touched && meta.error ? <div className="text-red-500">{meta.error}</div> : null}
-    </div>
-  );
-};
+import MyTextInput from '../myTextInput/myTextInput';
 
 const Login = () => {
   const [screen, setScreen] = useState('login');
@@ -31,15 +15,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const accounts = async () => {
-    try {
-      const accounts = await dispatch(getAccount());
-      return accounts;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  accounts();
   const handleScreen = () => {
     screen === 'login' ? setScreen('register') : setScreen('login');
   };
@@ -74,6 +49,7 @@ const Login = () => {
     } else {
       const { email, password } = formValues;
       response = await dispatch(authLogin({ email, password }));
+      dispatch(getAccount());
       response.type === 'auth/login/fulfilled' ? navigate('/') : alert('Credenciales Incorrectas');
     }
   }

@@ -93,7 +93,7 @@ const userSlice = createSlice({
       })
       /* Make a deposit in any account */
       .addCase(deposit.fulfilled, (state, action) => {
-        state.user.account.money = action.payload.money;
+        state.account.money = action.payload.money;
         state.onMovement = false;
       })
       .addCase(deposit.pending, (state) => {
@@ -109,7 +109,7 @@ const userSlice = createSlice({
       })
       /* Make a withdrawal from the user account modifying it*/
       .addCase(withdraw.fulfilled, (state, action) => {
-        state.user.account.money = action.payload;
+        state.account.money = action.payload;
         state.onMovement = false;
       })
       .addCase(withdraw.pending, (state) => {
@@ -147,7 +147,7 @@ export const selectUserToken = (state) => state.user.userToken;
 export const selectLoading = (state) => state.user.loading;
 export const selectOnMovement = (state) => state.user.onMovement;
 export const selectError = (state) => state.user.error;
-export const selectAccount = (state) => state.user.user.account;
+export const selectAccount = (state) => state.user.account?.id;
 export const selectBalance = (state) => state.user.account?.money;
 export const selectName = (state) => state.user?.user?.first_name;
 export const selectLastName = (state) => state.user?.user?.last_name;

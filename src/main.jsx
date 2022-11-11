@@ -15,6 +15,9 @@ import {
   HomePage
 } from './pages/index.js';
 import Login from './components/login/login';
+import Add from './components/add/add';
+import Spent from './components/spent/spent';
+import Send from './components/send/send';
 
 const browserRouter = createBrowserRouter([
   {
@@ -44,12 +47,12 @@ const browserRouter = createBrowserRouter([
             element: <BalancePage />
           },
           {
-            path: 'add'
-            // element: <AddBalance />,
+            path: 'add',
+            element: <Add />
           },
           {
-            path: 'spent'
-            // element: <SpentBalance />,
+            path: 'spent',
+            element: <Spent />
           }
         ]
       },
@@ -68,8 +71,8 @@ const browserRouter = createBrowserRouter([
         element: <ProtectedRoute />,
         children: [
           {
-            index: true
-            // element: <SendPage />,
+            index: true,
+            element: <Send />
           }
         ]
       }
