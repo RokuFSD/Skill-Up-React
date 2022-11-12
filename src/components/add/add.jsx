@@ -1,10 +1,13 @@
-import SendPage from '../../pages/SendPage';
+import MiniList from '../list/MiniList';
 import MoneyForm from '../moneyForm/moneyForm';
 
 const Add = () => {
   return (
     <MoneyForm screen="add">
-      <SendPage />
+      <div>
+        <h2>Ultimas Cargas</h2>
+        <MiniList limit={5} type="topup" />
+      </div>
     </MoneyForm>
   );
 };

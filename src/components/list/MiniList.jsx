@@ -5,7 +5,7 @@ import { filterByType } from '../../utils/functionUtils.js';
 import SkeletonTransaction from '../skeleton/SkeletonTransaction.jsx';
 import TransactionCard from './transaction/TransactionCard';
 
-function MiniList({ limit = 5, type = 'payment'}) {
+function MiniList({ limit = 5, type = 'payment' }) {
   const [filteredData, setFilteredData] = useState([]);
   const { data, isFetching } = useGetAllTransactionsQuery('');
 
@@ -20,7 +20,6 @@ function MiniList({ limit = 5, type = 'payment'}) {
     }
     setFilteredData(filtered);
   }, [isFetching]);
-
 
   if (isFetching) {
     return (

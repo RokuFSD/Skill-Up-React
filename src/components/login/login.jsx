@@ -135,7 +135,9 @@ const Login = () => {
           </Formik>
           <p className="self-end mt-16 mr-4">
             {screen === 'login' ? 'No tienes usuario?' : 'Ya tienes usuario?'}
-            <button onClick={handleScreen} className="mx-1 text-cyan-500">
+            <button
+              onClick={handleScreen}
+              className="mx-1 text-indigo-600 font-medium hover:text-indigo-400">
               {screen === 'login' ? 'Registrate' : 'Ingresa aqui'}
             </button>
           </p>

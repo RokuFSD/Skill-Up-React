@@ -45,7 +45,7 @@ const MoneyForm = ({ screen, children = null }) => {
   return (
     <div className="container mt-12 flex flex-col justify-center items-center">
       <h1>{moneyAction} dinero</h1>
-      <div className="flex flex-col sm:flex-row items-center justify-around w-full mt-8 gap-8">
+      <div className="flex flex-col sm:flex-row items-center justify-around w-full mt-8 gap-8 ">
         <Formik
           initialValues={{
             concept,
@@ -77,7 +77,7 @@ const MoneyForm = ({ screen, children = null }) => {
           {({ handleSubmit, isSubmitting }) => (
             <form className="flex flex-col justify-center items-center w-3/4 xs:max-w-1/2">
               <MyTextInput label="Concepto" type="text" name="concept" />
-              <MyTextInput label="Monto" type="number" min="1" name="amount" />
+              <MyTextInput label="Monto $" type="number" min="1" name="amount" />
               {screen === 'send' && (
                 <MyTextInput label="Cuenta de Destino" type="number" name="toAccount" />
               )}
