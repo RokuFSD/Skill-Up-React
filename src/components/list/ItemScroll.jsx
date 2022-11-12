@@ -5,10 +5,11 @@ const ItemScroll = forwardRef(({ children, large = false }, ref) => {
     <div
       ref={ref}
       className={`${
-        large ? 'h-full' : 'h-full shadow-xl border'
+        large ? 'h-full' : 'h-144 shadow-xl border'
       } w-full overflow-y-scroll overflow-x-hidden
       scroll-smooth will-change-scroll
       scrollbar-thin
+      will-change-scroll
       scrollbar-thumb-neutral-300 scrollbar-track-transparent bg-gradient-to-bl from-sky-100 via-sky-200 to-sky-100 p-4 rounded-lg`}>
       {children}
     </div>

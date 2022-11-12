@@ -6,8 +6,9 @@ import MyTextInput from '../myTextInput/myTextInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAccount } from '../../features/user/userSlice';
 import { deposit, transaction, withdraw } from '../../features/user/balanceActions';
+import { removeDestinyAccount } from '../../features/transaction/transactionSlice.js';
 
-const MoneyForm = ({ screen, children = null }) => {
+const MoneyForm = ({ screen, destinyAccount , children = null }) => {
   const dispatch = useDispatch();
   let userAccount = useSelector(selectAccount);
   let moneyAction;
@@ -47,11 +48,12 @@ const MoneyForm = ({ screen, children = null }) => {
       <h1>{moneyAction} dinero</h1>
       <div className="flex flex-col sm:flex-row items-center justify-around w-full mt-8 gap-8 ">
         <Formik
+          enableReinitialize={true}
           initialValues={{
             concept,
             type,
             amount: 0,
-            toAccount: userAccount
+            toAccount: screen === 'send' && destinyAccount ? destinyAccount : userAccount
           }}
           validationSchema={screen === 'send' ? schema : schema.omit(['toAccount'])}
           onSubmit={(values, { setSubmitting, resetForm }) => {
@@ -70,6 +72,7 @@ const MoneyForm = ({ screen, children = null }) => {
             }
             console.log(values);
             resetForm();
+            dispatch(removeDestinyAccount())
             setTimeout(() => {
               setSubmitting(false);
             }, 100);
@@ -79,7 +82,7 @@ const MoneyForm = ({ screen, children = null }) => {
               <MyTextInput label="Concepto" type="text" name="concept" />
               <MyTextInput label="Monto $" type="number" min="1" name="amount" />
               {screen === 'send' && (
-                <MyTextInput label="Cuenta de Destino" type="number" name="toAccount" />
+                <MyTextInput label="Cuenta de Destino" type="number" name="toAccount"/>
               )}
               <Button type="submit" onClick={handleSubmit} disabled={isSubmitting}>
                 {screen !== 'send' ? 'Cargar' : 'Enviar'}

@@ -14,7 +14,7 @@ function ErrorPage() {
             Pero no te preocupes, puedes encontrar muchas otras cosas en nuestra
             página principal.</p>
           <Link to={'/'}
-                className='inline-flex items-center justify-center px-4 py-2 text-base font-medium text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700'>
+                className='inline-flex items-center justify-center px-4 py-2 text-base font-medium text-white transition duration-150 ease-in-out bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-blue-700'>
             Volver a la página de inicio
           </Link>
         </div>
