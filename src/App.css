@@ -5,3 +5,9 @@
   box-sizing: border-box;
   height: 100%;
 }
+
+@media (min-width: 770px) {
+  #root {
+    height: calc(100vh - 64px);
+  }
+}

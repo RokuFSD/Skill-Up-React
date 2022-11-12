@@ -2,13 +2,13 @@ import FilterDropdown from './FilterDropdown.jsx';
 
 export const filtersArr = [
   {
-    type: 'date',
+    type: 'Fecha',
     value: '',
     possibleValues: ['desc', 'asc'],
     position: 0
   },
   {
-    type: 'type',
+    type: 'Tipo',
     value: '',
     possibleValues: ['topup', 'payment'],
     position: 0

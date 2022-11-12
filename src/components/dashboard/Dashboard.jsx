@@ -17,27 +17,27 @@ function Dashboard() {
   const { data: lastAccounts, isFetching: lastFetching } = useGetLastThreeAccountsQuery();
 
   return (
-    <section className="flex flex-col gap-12 px-8 w-full h-full items-center">
+    <section className="flex flex-col px-8 gap-12 w-full h-full items-center lg:justify-center lg:-mt-5">
       <DashBoardTitle />
-      <div className="flex flex-col w-full gap-8">
-        <div className="flex flex-col flex-wrap justify-between gap-8">
+      <div className="flex flex-col w-full gap-8 max-w-xl lg:flex-row lg:max-w-5xl lg:gap-20 lg:items-center">
+        <div className="h-full w-full flex flex-col flex-wrap justify-between gap-8">
           <div className="w-full bg-neutral-50 flex flex-col gap-12 p-4 rounded-lg shadow-lg">
             <BalanceCard />
             <BalanceActions />
           </div>
           <div className="w-full bg-neutral-50 flex p-4 h-40 rounded-lg flex-wrap shadow-lg">
-            <h2 className="text-xl font-semibold text-neutral-500 basis-full">Send again</h2>
+            <h2 className="text-xl font-semibold text-neutral-500 basis-full">Enviar de nuevo</h2>
             <DashboardUsers isFetching={lastFetching} accounts={lastAccounts} />
           </div>
         </div>
-        <div className="bg-neutral-50 p-4 rounded-xl shadow-xl">
-          <h2 className="text-xl font-semibold text-neutral-500">Last activity</h2>
+        <div className="h-full w-full bg-neutral-50 p-4 rounded-xl shadow-xl">
+          <h2 className="text-xl font-semibold text-neutral-500">Última actividad</h2>
           <MiniList />
           <Link
             to={'/movements'}
             className="text-indigo-600 font-semibold hover:text-indigo-400 transition-all">
             <div className="w-full flex items-center justify-between">
-              <p className="text-right">See all your movements</p>
+              <p className="text-right">Ver toda tu actividad</p>
               <Arrow />
             </div>
           </Link>
