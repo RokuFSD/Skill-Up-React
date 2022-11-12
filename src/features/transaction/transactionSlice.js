@@ -36,7 +36,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         let transactions = [];
         let counter = 1;
         while (true) {
-          const { data } = await fethWithBQ(`/transactions/?page=${counter}`, counter)
+          const { data } = await fethWithBQ(`/transactions/?page=${counter}`, counter);
           transactions = [...transactions, ...data?.data];
           if (!data?.nextPage) break;
           counter++;
@@ -50,7 +50,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         let transactions = [];
         let counter = 1;
         while (transactions.length < 3) {
-          const { data } = await fethWithBQ(`/transactions/?page=${counter}`, counter)
+          const { data } = await fethWithBQ(`/transactions/?page=${counter}`, counter);
           const filtered = data?.data.filter((transaction) => transaction.accountId !== transaction.to_account_id && transaction.type === 'payment' && transaction.userId === store.getState().user.user.id);
           transactions = [...new Map([...transactions, ...filtered].map((transaction) => [transaction.to_account_id, transaction])).values()];
           if (!data?.nextPage) break;
@@ -67,12 +67,15 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         return { data: lastThreeAccounts };
       }
     }),
-    addTransaction: builder.mutation({
-      query: (transaction) => ({
-        url: '/transactions',
-        method: 'POST',
-        body: transaction
-      }),
+    modifyTransaction: builder.mutation({
+      async queryFn({ id, data }, _api, _extraOptions) {
+        const response = await axios.put(`${apiUrl}/transactions/${id}`, data, {
+          headers: {
+            'authorization': `Bearer ${store.getState().user.adminToken}`
+          }
+        });
+        return response.data;
+      },
       invalidatesTags: ['Transaction']
     })
   })
@@ -87,8 +90,8 @@ export const infinite = (page) => {
 export const {
   useGetTransactionsQuery,
   useGetAllTransactionsQuery,
-  useGetLastThreeAccountsQuery
-  // useAddTransactionMutation
+  useGetLastThreeAccountsQuery,
+  useModifyTransactionMutation
 } = extendedApiSlice;
 
 export const selectDestinyAccount = (state) => state.transaction.destinyAccount;

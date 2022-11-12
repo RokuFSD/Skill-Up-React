@@ -54,7 +54,7 @@ function MovementsPage() {
         hasMore={triggeredSearch ? false : data?.nextPage}
         fetching={triggeredSearch ? isAllFetching : (isFetching || isNextDataFetching)}
         loadMore={triggeredSearch ? null : () => setPage(page + 1)}
-        element={<TransactionCard />}
+        element={<TransactionCard editable={true} />}
       />
 
     </div>

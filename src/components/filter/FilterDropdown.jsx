@@ -1,5 +1,6 @@
 import { capitalizeFirstLetter } from '../../utils/functionUtils.js';
 import { useState } from 'react';
+import CrossSvg from '../svg/Cross';
 
 const names = {
   'desc': 'Más reciente',
@@ -37,11 +38,7 @@ function FilterDropdown({ id, filter, setFilterValue }) {
         className='text-sm absolute right-2 -top-2 text-white bg-blue-700 rounded-full'
         onClick={() => handleReset()}
       >
-        <svg className='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'
-             xmlns='http://www.w3.org/2000/svg'>
-          <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2'
-                d='M6 18L18 6M6 6l12 12' />
-        </svg>
+        <CrossSvg/>
       </button>
       }
     </div>
