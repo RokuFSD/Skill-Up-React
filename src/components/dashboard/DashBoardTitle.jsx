@@ -4,8 +4,9 @@ import { selectName } from '../../features/user/userSlice.js';
 function DashBoardTitle() {
   const name = useSelector(selectName);
   return (
-    <h1 className='text-4xl font-semibold'>Hola {name}!
-      <span className='text-neutral-300 text-sm block py-1'>Lo que hay de nuevo...</span>
+    <h1 className="text-4xl font-semibold mt-12">
+      Hola {name}!
+      <span className="text-neutral-300 text-sm block py-1">Lo que hay de nuevo...</span>
     </h1>
   );
 }

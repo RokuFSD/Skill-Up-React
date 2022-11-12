@@ -17,7 +17,7 @@ function Dashboard() {
   const { data: lastAccounts, isFetching: lastFetching } = useGetLastThreeAccountsQuery();
 
   return (
-    <section className="flex flex-col px-8 gap-12 w-full h-full items-center lg:justify-center lg:-mt-5">
+    <section className="flex flex-col px-8 gap-8 w-full h-full items-center lg:justify-center lg:-mt-5">
       <DashBoardTitle />
       <div className="flex flex-col w-full gap-8 max-w-xl lg:flex-row lg:max-w-5xl lg:gap-20">
         <div className="w-full flex flex-col flex-wrap justify-between gap-8">
