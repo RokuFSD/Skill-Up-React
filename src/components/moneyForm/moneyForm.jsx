@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectAccount } from '../../features/user/userSlice';
 import { deposit, transaction, withdraw } from '../../features/user/balanceActions';
 import { removeDestinyAccount } from '../../features/transaction/transactionSlice.js';
+import { setDestinyAccount } from '../../features/transaction/transactionSlice.js';
 
 const MoneyForm = ({ screen, destinyAccount , children = null }) => {
   const dispatch = useDispatch();
@@ -82,7 +83,7 @@ const MoneyForm = ({ screen, destinyAccount , children = null }) => {
               <MyTextInput label="Concepto" type="text" name="concept" />
               <MyTextInput label="Monto $" type="number" min="1" name="amount" />
               {screen === 'send' && (
-                <MyTextInput label="Cuenta de Destino" type="number" name="toAccount"/>
+                <MyTextInput label="Cuenta de Destino" type="number" name="toAccount" onChange={(e) => dispatch(setDestinyAccount(+e.target.value))}/>
               )}
               <Button type="submit" onClick={handleSubmit} disabled={isSubmitting}>
                 {screen !== 'send' ? 'Cargar' : 'Enviar'}
