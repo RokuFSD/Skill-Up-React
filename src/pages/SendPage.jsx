@@ -28,18 +28,20 @@ function SendPage({ handleToggle }) {
     if (isFetching || !triggeredSearch) return;
     if (query === '') setTriggeredSearch(false);
     const newData = filtered.filter((item) => {
-      return (
-        item?.userData['first_name'].toLowerCase().includes(query.toLowerCase()) ||
-        item?.userData['last_name'].toLowerCase().includes(query.toLowerCase())
-      );
+      if (typeof item?.userData['first_name'] === 'string' && typeof item?.userData['last_name'] === 'string') {
+        return (
+          item?.userData['first_name'].toLowerCase().includes(query.toLowerCase()) ||
+          item?.userData['last_name'].toLowerCase().includes(query.toLowerCase())
+        );
+      }
     });
     setFilteredData(newData);
   }, [isFetching, query, data, triggeredSearch]);
 
   return (
-    <div className="w-full max-w-full h-full flex flex-col items-center justify-center gap-4">
+    <div className='w-full max-w-full h-full flex flex-col items-center justify-center gap-4'>
       <Searchbar setQuery={setQuery} setTriggeredSearch={setTriggeredSearch} />
-      <div className="will-change-scroll rounded-md h-144 w-full flex flex-col gap-4 bg-gradient-to-b from-sky-100 ...">
+      <div className='will-change-scroll rounded-md h-144 w-full flex flex-col gap-4 bg-gradient-to-b from-sky-100 ...'>
         <InfiniteScroll
           page={0}
           items={triggeredSearch ? filteredData : currentData}
@@ -49,18 +51,18 @@ function SendPage({ handleToggle }) {
           element={<AccountCard {...{ handleToggle }} />}
         />
         {!triggeredSearch && !isFetching && (
-          <div className="flex items-center justify-center h-12">
+          <div className='flex items-center justify-center h-12'>
             <Button
-              type="button"
-              style="primary"
+              type='button'
+              style='primary'
               onClick={() => onPageSelected(page - 1)}
               disabled={page === 0}>
               Previous
             </Button>
             {page + 1} of {totalPages}
             <Button
-              type="button"
-              style="primary"
+              type='button'
+              style='primary'
               onClick={() => onPageSelected(page + 1)}
               disabled={page + 1 === totalPages}>
               Next
