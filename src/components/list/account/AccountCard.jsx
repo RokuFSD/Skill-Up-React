@@ -7,14 +7,14 @@ function AccountCard({ userId, userData }) {
 
   return (
     <div
-      className="w-full flex justify-between items-center border-b border-neutral-300 h-20 pl-3 pr-4
+      className="w-full flex justify-between items-center border-b border-neutral-300 h-20 p-1 xs:pl-3 pr-4
     transition-all
     will-change-auto
     hover:cursor-pointer
     hover:scale-95
     "
       onClick={() => dispatch(setDestinyAccount(userId))}>
-      <div className="flex items-center justify-center rounded-full bg-neutral-200 p-3">
+      <div className="flex items-center justify-center rounded-full bg-neutral-200 p-0 xs:p-3">
         <Profile />
       </div>
       <div className="basis-auto mr-auto ml-2 xs:ml-5">
