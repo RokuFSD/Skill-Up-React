@@ -35,7 +35,7 @@ function MiniList({ limit = 5, type = 'all' }) {
   if (!data?.length) {
     return (
       <ItemScroll large>
-        <EmptyList large/>
+        <EmptyList large type={type !== 'all'}/>
       </ItemScroll>
     );
   }

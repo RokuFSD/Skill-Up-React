@@ -1,6 +1,6 @@
-function EmptyList({large = false}) {
+function EmptyList({large = false, type = false}) {
   return (
-    <div className={`flex flex-col items-center justify-center ${large ? 'h-96': 'h-full'}`}>
+    <div className={`flex flex-col items-center justify-center ${large ? 'h-112 w-full': 'h-full'} ${type ? 'w-80 md:w-96 lg:w-112 lg:h-128' : ''}`}>
       <div className='flex flex-col items-center justify-center gap-2'>
         <svg className='w-16 h-16 text-neutral-700' viewBox='0 0 20 20' fill='currentColor'>
           <path fillRule='evenodd'
