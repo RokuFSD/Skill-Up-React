@@ -1,20 +1,26 @@
 import Profile from '../../svg/Profile.jsx';
-import { useDispatch } from 'react-redux';
-import { setDestinyAccount } from '../../../features/transaction/transactionSlice.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectDestinyAccount, setDestinyAccount } from '../../../features/transaction/transactionSlice.js';
 
-function AccountCard({ userId, userData }) {
+function AccountCard({ userId, userData}) {
+  const selectedAccount = useSelector(selectDestinyAccount)
   const dispatch = useDispatch();
+
+  function handleClick(){
+    dispatch(setDestinyAccount(userId))
+  }
 
   return (
     <div
-      className="w-full flex justify-between items-center border-b border-neutral-300 h-20 pl-3 pr-4
+      className={`w-full flex justify-between items-center border-b border-blue-300 h-20 pl-3 pr-4
     transition-all
     will-change-auto
     hover:cursor-pointer
     hover:scale-95
-    "
-      onClick={() => dispatch(setDestinyAccount(userId))}>
-      <div className="flex items-center justify-center rounded-full bg-neutral-200 p-3">
+    ${selectedAccount === userId ? 'bg-blue-300' : ''}
+     `}
+      onClick={() => handleClick()}>
+      <div className='bg-neutral-100 flex items-center justify-center rounded-full p-3'>
         <Profile />
       </div>
       <div className="basis-auto mr-auto ml-2 xs:ml-5">
