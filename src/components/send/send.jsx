@@ -27,7 +27,7 @@ const Send = () => {
             </Button>
             {show && (
               <Modal handleToggle={handleToggle}>
-                <SendPage />
+                <SendPage {...{ handleToggle }} />
               </Modal>
             )}
           </>

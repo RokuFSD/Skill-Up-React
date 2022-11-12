@@ -5,7 +5,7 @@ import Searchbar from '../components/search/Searchbar.jsx';
 import AccountCard from '../components/list/account/AccountCard.jsx';
 import Button from '../components/button/Button';
 
-function SendPage() {
+function SendPage({ handleToggle }) {
   const { data, isFetching } = useGetAllAccountsQuery('');
   const [page, setPage] = useState(0);
   const [query, setQuery] = useState('');
@@ -46,7 +46,7 @@ function SendPage() {
           hasMore={false}
           fetching={isFetching}
           loadMore={null}
-          element={<AccountCard />}
+          element={<AccountCard {...{ handleToggle }} />}
         />
         {!triggeredSearch && !isFetching && (
           <div className="flex items-center justify-center h-12">
