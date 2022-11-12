@@ -12,12 +12,12 @@ function AccountCard({ userId, userData}) {
 
   return (
     <div
-      className={`w-full flex justify-between items-center border-b border-blue-300 h-20 pl-3 pr-4
+      className={`w-full flex justify-between items-center border-b border-blue-300 h-20 px-8
     transition-all
     will-change-auto
     hover:cursor-pointer
     hover:scale-95
-    ${selectedAccount === userId ? 'bg-blue-300' : ''}
+    ${selectedAccount === userId ? 'text-blue-600 font-bold' : ''}
      `}
       onClick={() => handleClick()}>
       <div className='bg-neutral-100 flex items-center justify-center rounded-full p-3'>
@@ -27,7 +27,7 @@ function AccountCard({ userId, userData}) {
         <p className="text-md">
           {userData?.first_name} {userData?.last_name}
         </p>
-        <p className="text-neutral-600">{userData?.email}</p>
+        <p className="text-neutral-700 font-normal">{userData?.email}</p>
       </div>
       <div className="">
         <p className="text-xs">ID : {userId}</p>

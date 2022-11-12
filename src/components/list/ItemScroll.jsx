@@ -10,7 +10,7 @@ const ItemScroll = forwardRef(({ children, large = false }, ref) => {
       scroll-smooth will-change-scroll
       scrollbar-thin
       will-change-scroll
-      scrollbar-thumb-neutral-300 scrollbar-track-transparent bg-gradient-to-bl from-sky-100 via-sky-200 to-sky-100 p-4 rounded-lg`}>
+      scrollbar-thumb-neutral-300 scrollbar-track-transparent bg-gradient-to-bl from-sky-100 via-sky-200 to-sky-100 rounded-lg`}>
       {children}
     </div>
   );
