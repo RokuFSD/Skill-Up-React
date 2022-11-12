@@ -38,14 +38,14 @@ export const deposit = createAsyncThunk(
 
 export const withdraw = createAsyncThunk(
   'balance/withdraw',
-  async ({ amount }, { rejectWithValue, getState, dispatch }) => {
+  async ({ amount }, { rejectWithValue, getState }) => {
     try {
       const token = getState().user.userToken;
       const destinationAccount = getState().user.account.id;
       const currentAccountMoney = getState().user.account.money;
       const finalAmount = Number(currentAccountMoney) - Number(amount);
       const userId = getState().user.user.id;
-      const adminToken = await adminResponse();
+      const adminToken = getState().user.adminToken
       const response = await axios.put(
         `${apiUrl}/accounts/${destinationAccount}`,
         {

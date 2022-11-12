@@ -29,10 +29,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         const { data, nextPage } = baseQueryReturnValue;
         return { data, nextPage };
       },
-      providesTags: (result) => result ? [...result?.data?.map(({ id }) => ({
-        type: 'Transaction',
-        id
-      })), 'Transaction'] : ['Transaction']
+      providesTags: ['Transaction']
     }),
     getAllTransactions: builder.query({
       async queryFn(_arg, _api, _extraOptions, fethWithBQ) {
@@ -46,10 +43,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         }
         return { data: transactions };
       },
-      providesTags: (result) => result ? [...result?.map(({ id }) => ({
-        type: 'Transaction',
-        id
-      })), 'Transaction'] : ['Transaction']
+      providesTags: ['Transaction']
     }),
     getLastThreeAccounts: builder.query({
       async queryFn(_arg, _api, _extraOptions, fethWithBQ) {

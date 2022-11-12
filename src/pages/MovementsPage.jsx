@@ -39,7 +39,7 @@ function MovementsPage() {
   }, [triggeredSearch, query, isAllFetching, filters]);
 
   return (
-    <div className='h-full w-128 flex flex-col items-center justify-center mx-auto gap-8'>
+    <div className='px-8 md:p-0 w-full max-w-lg h-full flex flex-col items-center justify-center mx-auto gap-8'>
       <div className='w-full flex flex-col gap-3 border-b py-2'>
         <Searchbar setQuery={setQuery} setTriggeredSearch={setTriggeredSearch} />
         <FilterBar filters={filters}

@@ -39,7 +39,7 @@ function SendPage() {
   return (
     <div className="w-full max-w-full h-full flex flex-col items-center justify-center gap-4">
       <Searchbar setQuery={setQuery} setTriggeredSearch={setTriggeredSearch} />
-      <div className="h-144 w-full flex flex-col gap-4 bg-gradient-to-b from-sky-100 ...">
+      <div className="will-change-scroll rounded-md h-144 w-full flex flex-col gap-4 bg-gradient-to-b from-sky-100 ...">
         <InfiniteScroll
           page={0}
           items={triggeredSearch ? filteredData : currentData}

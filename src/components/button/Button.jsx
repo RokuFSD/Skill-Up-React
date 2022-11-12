@@ -3,7 +3,7 @@ import { memo } from 'react';
 
 const styles = {
   primary:
-    'bg-gradient-to-br from-purple-500 via-indigo-500 to-indigo-500 text-indigo-100 border border-indigo-500 px-4 py-1 rounded-full m-1',
+    'bg-gradient-to-br from-blue-300 via-blue-400 to-blue-500 text-indigo-100 border border-blue-400 px-4 py-1 rounded-full m-1',
   success:
     'bg-gradient-to-br from-green-400 via-green-500 to-green-500 text-green-100 border border-green-500 px-4 py-1 rounded-full m-1',
   submit:
@@ -11,7 +11,7 @@ const styles = {
   error:
     'bg-gradient-to-br from-red-400 via-red-500 to-red-500 text-red-100 border border-red-500 px-4 py-1 rounded-full m-1',
   neutral:
-    'bg-gradient-to-br from-gray-700 via-gray-800 to-gray-800 text-gray-100 px-4 py-1 rounded-full m-1',
+    'bg-gradient-to-br from-gray-700 via-gray-800 to-gray-800 text-gray-200 px-4 py-1 rounded-full m-1',
   premium:
     'bg-gradient-to-br from-yellow-400 via-yellow-500 to-yellow-500 text-yellow-100 border border-yellow-500 px-4 py-1 rounded-full m-1',
   transparent: 'bg-transparent text-gray-100',

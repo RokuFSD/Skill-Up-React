@@ -4,6 +4,8 @@ import useDimensions from '../../utils/useDimensions';
 import Button from '../button/Button';
 import Modal from '../modal';
 import MoneyForm from '../moneyForm/moneyForm';
+import { useSelector } from 'react-redux';
+import { selectDestinyAccount } from '../../features/transaction/transactionSlice.js';
 
 const Send = () => {
   const { width, height } = useDimensions();
@@ -14,8 +16,9 @@ const Send = () => {
     setShow(!show);
   };
 
+  const destinyAccount = useSelector(selectDestinyAccount);
   return (
-    <MoneyForm screen="send">
+    <MoneyForm screen="send" destinyAccount={destinyAccount}>
       <>
         {screen === 'PORTRAIT' ? (
           <>
