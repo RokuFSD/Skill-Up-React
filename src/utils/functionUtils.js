@@ -3,12 +3,23 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString('es-AR', options);
 }
 
+
+/*
+* query = 'string'
+* fields = 'fields of object to search in'
+* data = 'Array of transactions';
+* */
 function filterData(data, query, fields) {
   return data?.filter((item) => {
     const values = fields.map((field) => item[field]);
     return values.some((value) => value.toLowerCase().includes(query.toLowerCase()));
   });
 }
+
+/*
+* type = 'topup' | 'payment | 'transfer'
+* data = Array of transactions
+* */
 
 function filterByType(data, type) {
   if (!type) return data;
@@ -24,6 +35,11 @@ function filterByType(data, type) {
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+/*
+* order = 'asc' | 'desc'
+* data = Array of transactions
+* */
 
 function orderByDate(data, order) {
   if (!order) return data;

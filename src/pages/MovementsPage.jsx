@@ -19,15 +19,19 @@ function MovementsPage() {
   const [triggeredSearch, setTriggeredSearch] = useState(false);
   const [triggeredFilter, setTriggeredFilter] = useState(false);
 
+  // Get 2 pages of transactions for the infinite scroll
   const { data, isFetching } = useGetTransactionsQuery(page);
   const { isFetching: isNextDataFetching } = useGetTransactionsQuery(page + 1, {
     skip: !data?.nextPage
   });
+
+  // Get all transactions only when the user has made a search or filter
   const { data: allData, isFetching: isAllFetching } = useGetAllTransactionsQuery('', {
     skip: !triggeredSearch
   });
 
   let result = infinite(page);
+
 
   useEffect(() => {
     let filtered = allData;

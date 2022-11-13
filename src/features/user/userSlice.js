@@ -10,10 +10,6 @@ const account = localStorage.getItem('account')
   ? JSON.parse(localStorage.getItem('account'))
   : null;
 
-/* const account = localStorage.getItem('account')
-  ? JSON.parse(localStorage.getItem('account'))
-  : null; */
-
 const initialState = {
   account,
   accounts: [],
@@ -22,8 +18,8 @@ const initialState = {
   error: '',
   userToken,
   adminToken,
-  success: false, // for monitoring the registration process
-  onMovement: false // for monitoring a deposit - withdraw - transaction process
+  success: false,
+  onMovement: false
 };
 
 const userSlice = createSlice({
@@ -48,7 +44,9 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+
       /* Register user */
+
       .addCase(authRegister.pending, (state) => {
         state.loading = true;
         state.error = '';
@@ -56,7 +54,7 @@ const userSlice = createSlice({
       .addCase(authRegister.fulfilled, (state, action) => {
         state.loading = false;
         state.account = action.payload;
-        state.success = true; // registration was successful
+        state.success = true;
       })
       .addCase(authRegister.rejected, (state, action) => {
         state.loading = false;
@@ -66,7 +64,9 @@ const userSlice = createSlice({
           state.error = action.error.message;
         }
       })
+
       /* Login user */
+
       .addCase(authLogin.pending, (state) => {
         state.loading = true;
         state.error = '';
@@ -85,7 +85,9 @@ const userSlice = createSlice({
         }
         state.loading = false;
       })
+
       /* Get user account */
+
       .addCase(getAccount.fulfilled, (state, action) => {
         state.account = action.payload;
         state.onMovement = false;
@@ -101,7 +103,10 @@ const userSlice = createSlice({
         }
         state.loading = false;
       })
+
       /* Make a deposit in any account */
+
+
       .addCase(deposit.fulfilled, (state, action) => {
         state.account.money = action.payload.money;
         state.success = true;
@@ -118,7 +123,9 @@ const userSlice = createSlice({
         }
         state.onMovement = false;
       })
+
       /* Make a withdrawal from the user account modifying it*/
+
       .addCase(withdraw.fulfilled, (state, action) => {
         state.account.money = action.payload;
         state.success = true;
@@ -135,7 +142,10 @@ const userSlice = createSlice({
         }
         state.onMovement = false;
       })
+
       /* In case of a withdrawal or deposit on another user account, make a transaction */
+
+
       .addCase(transaction.fulfilled, (state, action) => {
         state.success = true;
         state.onMovement = false;
@@ -151,14 +161,15 @@ const userSlice = createSlice({
         }
         state.onMovement = false;
       })
+
       //Admin Token for restricted API endpoints
+
       .addCase(adminResponse.fulfilled, (state, action) => {
         state.adminToken = action.payload.accessToken;
       });
   }
 });
 
-export const selectAccounts = (state) => state.accounts;
 export const selectUser = (state) => state.user.user;
 export const selectUserToken = (state) => state.user.userToken;
 export const selectOnMovement = (state) => state.user.onMovement;
