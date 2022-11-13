@@ -11,3 +11,9 @@
     height: calc(100vh - 64px);
   }
 }
+
+.swal-title {
+  margin: 0px;
+  font-size: 20px;
+  margin-bottom: 28px;
+}
