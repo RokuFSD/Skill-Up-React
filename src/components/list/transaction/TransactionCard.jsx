@@ -40,13 +40,14 @@ function TransactionCard({ id, date, amount, concept, type, to_account_id, accou
             ref={inputRef}
             placeholder={concept}
             onChange={(e) => setNewConcept(e.target.value)}
-            className="w-20 border-none outline-none placeholder-black bg-transparent md:w-full"
+            className='w-20 border-none outline-none placeholder-black bg-transparent md:w-full'
           />
           :
           <p>{concept}</p>}
         {
-          editable && !isTransfer ? !editing ?
-            <p className='pt-2 hover:text-blue-400 transition-all hover:cursor-pointer ' onClick={() => handleClick()}><PencilSvg /></p> :
+          editable && !editing ?
+            <p className='pt-2 hover:text-blue-400 transition-all hover:cursor-pointer ' onClick={() => handleClick()}>
+              <PencilSvg /></p> :
             <div className='flex items-center pt-2 gap-2'>
               <p className='hover:cursor-pointer hover:text-green-600 transition-all' onClick={() => handleSubmit()}>
                 <svg className='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'
@@ -54,13 +55,14 @@ function TransactionCard({ id, date, amount, concept, type, to_account_id, accou
                   <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M5 13l4 4L19 7'></path>
                 </svg>
               </p>
-              <p className='hover:cursor-pointer hover:text-red-400 transition-all' onClick={() => setEditing(false)}><CrossSvg /></p>
-            </div> : null
+              <p className='hover:cursor-pointer hover:text-red-400 transition-all' onClick={() => setEditing(false)}>
+                <CrossSvg /></p>
+            </div>
         }
       </div>
       <div className='text-right w-2/3'>
-        <p className={`${isExpense ? 'text-red-400' : 'text-green-500'} font-semibold`}>
-          <span>{isExpense ? '-' : '+'}$</span>
+        <p className={`${isExpense || isTransfer ? 'text-red-400' : 'text-green-500'} font-semibold`}>
+          <span>{isExpense || isTransfer ? '-' : '+'}$</span>
           {amount}
         </p>
         <p className='text-sm'>{formatDate(date)}</p>
