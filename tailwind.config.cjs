@@ -27,8 +27,10 @@ module.exports = {
         main: 'calc(100vh - 100px)'
       },
       width: {
+        99: '25rem',
         112: '28rem',
-        128: '32rem'
+        128: '32rem',
+        144: '36rem',
       },
       screens: {
         xxs: '338px',

@@ -5,6 +5,7 @@ import { deposit, withdraw, transaction } from '../features/user/balanceActions.
 import { apiSlice } from '../features/api/apiSlice.js';
 import store from './store.js';
 import { userLogout } from '../features/user/userSlice.js';
+import { removeDestinyAccount } from '../features/transaction/transactionSlice.js';
 
 export const listenerMiddleware = createListenerMiddleware();
 export const adminListenerMiddleware = createListenerMiddleware();
@@ -43,5 +44,6 @@ logoutListenerMiddleware.startListening({
   matcher: isAnyOf(userLogout),
   effect: (action, listenerApi) => {
     store.dispatch(apiSlice.util.resetApiState());
+    store.dispatch(removeDestinyAccount())
   }
 });

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { filterByType } from '../../utils/functionUtils.js';
 import SkeletonTransaction from '../skeleton/SkeletonTransaction.jsx';
 import TransactionCard from './transaction/TransactionCard';
+import EmptyList from './EmptyList.jsx';
 
 function MiniList({ limit = 5, type = 'all' }) {
   const [filteredData, setFilteredData] = useState([]);
@@ -27,6 +28,14 @@ function MiniList({ limit = 5, type = 'all' }) {
         {[...Array(5)].map((_, index) => (
           <SkeletonTransaction key={index} />
         ))}
+      </ItemScroll>
+    );
+  }
+
+  if (!data?.length) {
+    return (
+      <ItemScroll large>
+        <EmptyList large type={type !== 'all'}/>
       </ItemScroll>
     );
   }
