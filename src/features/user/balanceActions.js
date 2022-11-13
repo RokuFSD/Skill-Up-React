@@ -3,6 +3,10 @@ import axios from 'axios';
 import apiUrl from '../api/index.js';
 import { apiSlice } from '../api/apiSlice.js';
 
+
+/*
+  * This is a thunk that is used to make a deposit or transfer to a user.
+* */
 export const deposit = createAsyncThunk(
   'balance/deposit',
   async ({ amount, toAccount, concept, type }, { rejectWithValue, getState }) => {
@@ -37,6 +41,10 @@ export const deposit = createAsyncThunk(
   }
 );
 
+/*
+  * This is a thunk that is used to make a withdrawal from a user making a put action to the API.
+* */
+
 export const withdraw = createAsyncThunk(
   'balance/withdraw',
   async ({ amount }, { rejectWithValue, getState }) => {
@@ -69,6 +77,10 @@ export const withdraw = createAsyncThunk(
     }
   }
 );
+
+/*
+* This is a thunk that is used to create a transaction when the API doesn't do it.
+* */
 
 export const transaction = createAsyncThunk(
   'balance/transaction',

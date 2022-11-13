@@ -45,6 +45,8 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       },
       providesTags: ['Transaction']
     }),
+
+    /* Retrieve the last accounts who receive a transaction from the user*/
     getLastThreeAccounts: builder.query({
       async queryFn(_arg, _api, _extraOptions, fethWithBQ) {
         let transactions = [];
@@ -80,6 +82,11 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
     })
   })
 });
+
+/*
+* InfiniteScroll function
+* Returns the transactions from the state when page changes
+*  */
 
 export const infinite = (page) => {
   return [...Array(page)].map((_, i) => i + 1).map((page) => {

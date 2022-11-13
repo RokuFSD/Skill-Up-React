@@ -38,10 +38,13 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
           finished = data?.nextPage;
           accounts = [...accounts, ...data?.data];
         }
-        /* Filter array unique userId */
+
+        /* Makes a new array with the accounts with no repeated user */
         const uniqueAccounts = [
           ...new Map(accounts.map((account) => [account.userId, account])).values()
         ];
+
+        /* Retrieve the user data with his account */
         const accountsWithUser = await Promise.all(
           uniqueAccounts.map(async (account) => {
             const user = await fetchWithBQ(`/users/${account.userId}`);

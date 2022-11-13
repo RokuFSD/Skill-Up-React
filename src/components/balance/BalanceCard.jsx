@@ -15,7 +15,6 @@ function BalanceCard() {
         <h2 className="text-md font-semibold text-neutral-500">Tu saldo</h2>
       </div>
       <div className="w-full">
-        {/*Show the balance of the account*/}
         <div className="flex w-full justify-between items-center">
           <div className="relative flex items-center w-3/4">
             <Button

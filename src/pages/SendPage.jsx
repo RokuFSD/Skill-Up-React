@@ -13,6 +13,7 @@ function SendPage({ handleToggle }) {
   const [triggeredSearch, setTriggeredSearch] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
 
+  // Variables for pagination
   const allAccounts = data?.length;
   const totalPages = Math.ceil(allAccounts / 10);
 

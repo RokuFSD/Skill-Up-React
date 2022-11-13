@@ -11,6 +11,11 @@ export const listenerMiddleware = createListenerMiddleware();
 export const adminListenerMiddleware = createListenerMiddleware();
 export const logoutListenerMiddleware = createListenerMiddleware();
 export const transactionListenerMiddleware = createListenerMiddleware();
+
+
+/*
+* Middleware to ensure that the last data of the user and the account is in local storage
+* */
 listenerMiddleware.startListening({
   matcher: isAnyOf(
     deposit.fulfilled,
@@ -26,6 +31,9 @@ listenerMiddleware.startListening({
   }
 });
 
+/*
+* Middleware to ensure that a admin token is available to make requests
+* */
 adminListenerMiddleware.startListening({
   matcher: isAnyOf(adminResponse.fulfilled),
   effect: (action, listenerApi) => {
@@ -33,12 +41,19 @@ adminListenerMiddleware.startListening({
   }
 });
 
+/*
+* Middleware to ensure that the transactions are refetched when a transaction is made
+* */
 transactionListenerMiddleware.startListening({
   matcher: isAnyOf(transaction.fulfilled, withdraw.fulfilled, deposit.fulfilled),
   effect: (action, listenerApi) => {
     store.dispatch(apiSlice.util.invalidateTags(['Transaction']));
   }
 });
+
+/*
+* Middleware to ensure that the data of the user is removed from local storage when the user logs out
+* */
 
 logoutListenerMiddleware.startListening({
   matcher: isAnyOf(userLogout),

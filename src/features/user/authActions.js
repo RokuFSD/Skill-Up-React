@@ -31,12 +31,6 @@ export const authLogin = createAsyncThunk(
   }
 );
 
-/*
- * TODO: make the input values as the api expects
- * User: {email: string, password: string, passwordConfirmation: string, name: string, lastName: string}
- * Returns: void
- *  */
-
 export const authRegister = createAsyncThunk(
   'auth/register',
   async ({ email, password, firstName, lastName }, { rejectWithValue, dispatch }) => {
