@@ -1,6 +1,7 @@
 import './unique.css';
 import { HashLink } from 'react-router-hash-link';
 import { Link } from 'react-router-dom';
+import pic02 from '../../../assets/pic02.jpg'
 
 function Header() {
   return (
@@ -105,7 +106,7 @@ function Landing() {
       <Banner />
       <section id="one" className="spotlight style1 bottom bg-one bg-oneUrl">
         <span className="image fit main">
-          <img src="../../../../assets/pic02.jpg" alt="" />
+          <img src={pic02} alt="" />
         </span>
         <div className="content">
           <div className="container-unique">

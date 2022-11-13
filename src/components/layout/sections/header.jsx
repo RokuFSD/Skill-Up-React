@@ -1,3 +1,4 @@
+import alkemyLogo from "../../../assets/alkemy_logo.png"
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -38,7 +39,7 @@ const Header = () => {
         className={`flex fixed top-0 w-full justify-between items-center h-12 px-4 py-4 bgblack z-10 transition-all duration-400 ${
           scrollOffset > 0 ? 'bg-gray-200 opacity-95' : null
         }`}>
-        <img src={'./assets/alkemy_logo.png'} className="logo" alt="logo" />
+        <img src={alkemyLogo} className="logo" alt="logo" />
         <h1
           className={`font-black text-3xl text-gray-200 tracking-widest ${
             scrollOffset > 0 && 'text-sky-500'

@@ -4,7 +4,6 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'oneUrl': 'url(\'./assets/pic02.jpg\')',
         'twoUrl': 'url(\'./assets/pic03.jpg\')',
         'threeUrl': 'url(\'./assets/pic04.jpg\')',
         'fourUrl': 'url(\'./assets/pic05.jpg\')',
