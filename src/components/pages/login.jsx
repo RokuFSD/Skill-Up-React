@@ -1,4 +1,4 @@
-import { Formik } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import React, { useState } from 'react';
 import Button from '../layout/buttons/Button.jsx';
@@ -27,7 +27,7 @@ const Login = () => {
     password: Yup.string()
       .matches(
         /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/,
-        'Debe tener minimo 8 caracteres (Al menos 1 mayuscula, minuscula, numero y caracter especial)',
+        'Debe tener minimo 8 caracteres (mayuscula, minuscula, numero y caracter especial)',
         {
           excludeEmptyString: true
         }
@@ -129,7 +129,13 @@ const Login = () => {
                 {screen === 'register' && (
                   <>
                     <MyTextInput label="Nombre" name="firstName" type="text" placeholder="" />
+                    <ErrorMessage name="firstName">
+                      {(msg) => <p className="text-red-500">{msg}</p>}
+                    </ErrorMessage>
                     <MyTextInput label="Apellido" name="lastName" type="text" placeholder="" />
+                    <ErrorMessage name="lastName">
+                      {(msg) => <p className="text-red-500">{msg}</p>}
+                    </ErrorMessage>
                   </>
                 )}
                 <MyTextInput
@@ -139,6 +145,9 @@ const Login = () => {
                   placeholder=""
                   autoComplete="email"
                 />
+                <ErrorMessage name="email">
+                  {(msg) => <p className="text-red-500">{msg}</p>}
+                </ErrorMessage>
                 <MyTextInput
                   label="Contraseña"
                   name="password"
@@ -146,15 +155,22 @@ const Login = () => {
                   placeholder=""
                   autoComplete="current-password"
                 />
-
+                <ErrorMessage name="password">
+                  {(msg) => <p className="text-red-500">{msg}</p>}
+                </ErrorMessage>
                 {screen === 'register' && (
-                  <MyTextInput
-                    label="Confirmar Contraseña"
-                    name="confirmPass"
-                    type="password"
-                    autoComplete="current-password"
-                    placeholder=""
-                  />
+                  <>
+                    <MyTextInput
+                      label="Confirmar Contraseña"
+                      name="confirmPass"
+                      type="password"
+                      autoComplete="current-password"
+                      placeholder=""
+                    />
+                    <ErrorMessage name="confirmPass">
+                      {(msg) => <p className="text-red-500">{msg}</p>}
+                    </ErrorMessage>
+                  </>
                 )}
                 <Button type="submit" onClick={handleSubmit} disabled={isSubmitting}>
                   {screen === 'register' ? 'Registrarse' : 'Ingresar'}
