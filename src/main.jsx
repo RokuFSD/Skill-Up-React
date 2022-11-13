@@ -6,72 +6,69 @@ import store from './app/store';
 import ProtectedRoute from './components/routes/ProtectedRoute.jsx';
 import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { BalancePage, MovementsPage, ErrorPage, RegisterPage, HomePage } from './pages/index.js';
+import { MovementsPage, ErrorPage, HomePage } from './pages/index.js';
 import Login from './components/login/login';
 import Add from './components/add/add';
 import Spent from './components/spent/spent';
 import Send from './components/send/send';
+import Dashboard from './components/dashboard/Dashboard.jsx';
 
 const browserRouter = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    children: [
-      {
-        index: true,
-        element: <HomePage />
-      },
-      {
-        path: 'register',
-        element: <RegisterPage />
-        // action: registerAction
-      },
-      {
-        path: 'login',
-        element: <Login />
-        // action: loginAction
-      },
-      {
-        path: 'balance',
-        element: <ProtectedRoute />,
-        children: [
-          {
-            index: true,
-            element: <BalancePage />
-          },
-          {
-            path: 'add',
-            element: <Add />
-          },
-          {
-            path: 'spent',
-            element: <Spent />
-          }
-        ]
-      },
-      {
-        path: 'movements',
-        children: [
-          {
-            index: true,
-            element: <MovementsPage />
-          }
-        ]
-      },
-      {
-        path: 'send',
-        element: <ProtectedRoute />,
-        children: [
-          {
-            index: true,
-            element: <Send />
-          }
-        ]
-      }
-    ],
-    errorElement: <ErrorPage />
-  }
-]);
+    {
+      path: '/',
+      element: <App />,
+      children: [
+        {
+          index: true,
+          element: <HomePage />
+        },
+        {
+          path: 'login',
+          element: <Login />
+        },
+        {
+          path: 'balance',
+          element: <ProtectedRoute />,
+          children: [
+            {
+              index: true,
+              element: <Dashboard />
+            },
+            {
+              path: 'add',
+              element: <Add />
+            },
+            {
+              path: 'spent',
+              element: <Spent />
+            }
+          ]
+        },
+        {
+          path: 'movements',
+          element: <ProtectedRoute />,
+          children: [
+            {
+              index: true,
+              element: <MovementsPage />
+            }
+          ]
+        },
+        {
+          path: 'send',
+          element: <ProtectedRoute />,
+          children: [
+            {
+              index: true,
+              element: <Send />
+            }
+          ]
+        }
+      ],
+      errorElement: <ErrorPage />
+    }
+  ])
+;
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -1,6 +1,6 @@
 function formatDate(date) {
   const options = { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' };
-  return new Date(date).toLocaleDateString('en-US', options);
+  return new Date(date).toLocaleDateString('es-AR', options);
 }
 
 function filterData(data, query, fields) {
@@ -12,6 +12,12 @@ function filterData(data, query, fields) {
 
 function filterByType(data, type) {
   if (!type) return data;
+  if (type === 'transaction') {
+    return data?.filter((item) => item.accountId !== item.to_account_id && item.type === 'payment');
+  }
+  if( type === 'payment'){
+    return data?.filter((item) => item.accountId === item.to_account_id && item.type === 'payment');
+  }
   return data?.filter((item) => item?.type === type);
 }
 

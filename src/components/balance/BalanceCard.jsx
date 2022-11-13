@@ -12,7 +12,7 @@ function BalanceCard() {
   return (
     <div className="w-full bg-gradient-to-br from-neutral-800 via-neutral-800 to-neutral-600 h-40 flex px-3 pt-3 flex-wrap rounded-xl shadow-xl">
       <div className="w-full">
-        <h2 className="text-md font-semibold text-neutral-500">Your balance</h2>
+        <h2 className="text-md font-semibold text-neutral-500">Tu saldo</h2>
       </div>
       <div className="w-full">
         {/*Show the balance of the account*/}
@@ -37,7 +37,7 @@ function BalanceCard() {
               )}
             </p>
           </div>
-          <Link to='balance/add'>
+          <Link to='add'>
             <Button style={'premium'} extraClasses={'w-10 h-10 px-0 py-0'}>
               +
             </Button>

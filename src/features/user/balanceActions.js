@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import apiUrl from '../api/index.js';
+import { apiSlice } from '../api/apiSlice.js';
 
 export const deposit = createAsyncThunk(
   'balance/deposit',
@@ -38,14 +39,14 @@ export const deposit = createAsyncThunk(
 
 export const withdraw = createAsyncThunk(
   'balance/withdraw',
-  async ({ amount }, { rejectWithValue, getState, dispatch }) => {
+  async ({ amount }, { rejectWithValue, getState }) => {
     try {
       const token = getState().user.userToken;
       const destinationAccount = getState().user.account.id;
       const currentAccountMoney = getState().user.account.money;
       const finalAmount = Number(currentAccountMoney) - Number(amount);
       const userId = getState().user.user.id;
-      const adminToken = await adminResponse();
+      const adminToken = getState().user.adminToken;
       const response = await axios.put(
         `${apiUrl}/accounts/${destinationAccount}`,
         {
@@ -71,11 +72,19 @@ export const withdraw = createAsyncThunk(
 
 export const transaction = createAsyncThunk(
   'balance/transaction',
-  async ({ amount, type, concept }, { rejectWithValue, getState }) => {
+  async ({ amount, type, concept, screen, toAccount }, { rejectWithValue, getState, dispatch }) => {
     try {
       const token = getState().user.userToken;
-      const userId = getState().user.user.id;
-      const accountId = getState().user.account.id;
+      let userId = getState().user.user.id;
+      let accountId = getState().user.account.id;
+      let sendAccountId = accountId;
+      if (screen === 'send') {
+        accountId = toAccount;
+        const { data } = await dispatch(apiSlice.endpoints.getUserId.initiate({ id: accountId }));
+        userId = data;
+        concept = 'Ingreso de Dinero';
+        type = 'topup';
+      }
       const response = await axios.post(
         `${apiUrl}/transactions`,
         {
@@ -85,7 +94,7 @@ export const transaction = createAsyncThunk(
           accountId,
           userId,
           amount: Number(amount),
-          to_account_id: accountId
+          to_account_id: sendAccountId
         },
         {
           headers: {

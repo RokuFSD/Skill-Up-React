@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Button from '../button/Button';
 import MyTextInput from '../myTextInput/myTextInput';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAccount } from '../../features/user/userSlice';
+import {
+  selectAccount,
+  selectError,
+  selectSuccess,
+  setError,
+  setSuccess
+} from '../../features/user/userSlice';
 import { deposit, transaction, withdraw } from '../../features/user/balanceActions';
+import { removeDestinyAccount } from '../../features/transaction/transactionSlice.js';
+import { setDestinyAccount } from '../../features/transaction/transactionSlice.js';
+import swal from 'sweetalert';
 
-const MoneyForm = ({ screen }) => {
+const MoneyForm = ({ screen, destinyAccount, children = null }) => {
   const dispatch = useDispatch();
+  const error = useSelector(selectError);
+  const success = useSelector(selectSuccess);
   let userAccount = useSelector(selectAccount);
   let moneyAction;
   let type;
@@ -42,16 +53,36 @@ const MoneyForm = ({ screen }) => {
       .required('Debe ingresar cuenta de destino')
   });
 
+  error &&
+    swal({
+      buttons: false,
+      timer: 3000,
+      icon: 'error',
+      title: 'Error en Transaccion'
+    }).then(() => {
+      dispatch(setError(''));
+    });
+
+  success &&
+    swal({
+      buttons: false,
+      timer: 3000,
+      icon: 'success',
+      title: 'Transaccion Exitosa'
+    }).then(() => {
+      dispatch(setSuccess(false));
+    });
   return (
     <div className="container mt-12 flex flex-col justify-center items-center">
       <h1>{moneyAction} dinero</h1>
-      <div className="flex flex-col sm:flex-row items-center justify-around w-full">
+      <div className="flex flex-col sm:flex-row items-center justify-around w-full mt-8 gap-8 ">
         <Formik
+          enableReinitialize={true}
           initialValues={{
             concept,
             type,
             amount: 0,
-            toAccount: userAccount
+            toAccount: screen === 'send' && destinyAccount ? destinyAccount : userAccount
           }}
           validationSchema={screen === 'send' ? schema : schema.omit(['toAccount'])}
           onSubmit={(values, { setSubmitting, resetForm }) => {
@@ -62,14 +93,16 @@ const MoneyForm = ({ screen }) => {
                 break;
               case 'spent':
                 dispatch(withdraw({ amount }));
-                dispatch(transaction({ amount, ...rest }));
+                dispatch(transaction({ screen, amount, ...rest }));
                 break;
               case 'send':
                 dispatch(deposit(values));
+                dispatch(transaction({ screen, toAccount, amount, ...rest }));
                 break;
             }
             console.log(values);
             resetForm();
+            dispatch(removeDestinyAccount());
             setTimeout(() => {
               setSubmitting(false);
             }, 100);
@@ -77,17 +110,22 @@ const MoneyForm = ({ screen }) => {
           {({ handleSubmit, isSubmitting }) => (
             <form className="flex flex-col justify-center items-center w-3/4 xs:max-w-1/2">
               <MyTextInput label="Concepto" type="text" name="concept" />
-              <MyTextInput label="Monto" type="number" min="1" name="amount" />
               {screen === 'send' && (
-                <MyTextInput label="Cuenta de Destino" type="number" name="toAccount" />
+                <MyTextInput
+                  label="Cuenta de Destino"
+                  type="number"
+                  name="toAccount"
+                  onChange={(e) => dispatch(setDestinyAccount(+e.target.value))}
+                />
               )}
+              <MyTextInput label="Monto $" type="number" min="1" name="amount" />
               <Button type="submit" onClick={handleSubmit} disabled={isSubmitting}>
                 {screen !== 'send' ? 'Cargar' : 'Enviar'}
               </Button>
             </form>
           )}
         </Formik>
-        <div className="bg-red-600 w-20 h-20"></div>
+        {children}
       </div>
     </div>
   );

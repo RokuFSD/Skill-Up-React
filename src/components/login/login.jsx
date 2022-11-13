@@ -8,6 +8,7 @@ import { adminResponse, getAccount } from '../../features/user/accountActions';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { selectUserToken } from '../../features/user/userSlice';
 import MyTextInput from '../myTextInput/myTextInput';
+import swal from '@sweetalert/with-react';
 
 const Login = () => {
   const [screen, setScreen] = useState('login');
@@ -43,15 +44,43 @@ const Login = () => {
     if (screen === 'register') {
       const { confirmPass, ...rest } = formValues;
       response = await dispatch(authRegister({ ...rest }));
-      response.type === 'auth/register/fulfilled'
-        ? navigate('/')
-        : alert('Credenciales Incorrectas');
+      if (response.type === 'auth/register/fulfilled') {
+        swal({
+          buttons: false,
+          timer: 3000,
+          icon: 'success',
+          title: 'Bienvenido'
+        });
+        navigate('/');
+      } else {
+        swal({
+          buttons: false,
+          timer: 3000,
+          icon: 'error',
+          title: 'Credenciales Incorrectas'
+        });
+      }
     } else {
       const { email, password } = formValues;
       response = await dispatch(authLogin({ email, password }));
       await dispatch(adminResponse());
       dispatch(getAccount());
-      response.type === 'auth/login/fulfilled' ? navigate('/') : alert('Credenciales Incorrectas');
+      if (response.type === 'auth/login/fulfilled') {
+        swal({
+          buttons: false,
+          timer: 3000,
+          icon: 'success',
+          text: 'Bienvenido'
+        });
+        navigate('/');
+      } else {
+        swal({
+          buttons: false,
+          timer: 3000,
+          icon: 'error',
+          title: 'Credenciales Incorrectas'
+        });
+      }
     }
   }
 
@@ -135,7 +164,9 @@ const Login = () => {
           </Formik>
           <p className="self-end mt-16 mr-4">
             {screen === 'login' ? 'No tienes usuario?' : 'Ya tienes usuario?'}
-            <button onClick={handleScreen} className="mx-1 text-cyan-500">
+            <button
+              onClick={handleScreen}
+              className="mx-1 text-indigo-600 font-medium hover:text-indigo-400">
               {screen === 'login' ? 'Registrate' : 'Ingresa aqui'}
             </button>
           </p>

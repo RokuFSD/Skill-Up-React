@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { authLogin } from '../../features/user/authActions';
 import { selectUserToken, userLogout } from '../../features/user/userSlice';
 import Button from '../button/Button';
+import { useScroll } from '../../utils/useScroll';
 
 const Header = () => {
   const close = 'scale-y-0';
@@ -11,6 +12,7 @@ const Header = () => {
   const [toggle, setToggle] = useState(close);
   const token = useSelector(selectUserToken);
   const dispatch = useDispatch();
+  const scrollOffset = useScroll();
 
   const handleToggle = (route) => {
     toggle === close ? setToggle(open) : setToggle(close);
@@ -31,17 +33,24 @@ const Header = () => {
   };
 
   return (
-    <header className="container h-12">
-      <nav className="flex fixed top-0 w-full justify-between items-center h-12 px-4 py-4 bg-white z-10">
-        <img src={'./assets/alkemy_logo.jpg'} className="logo" alt="logo" />
-        <h1 className="font-bold text-2xl">AlkyBank</h1>
+    <header className="container h-12 ">
+      <nav
+        className={`flex fixed top-0 w-full justify-between items-center h-12 px-4 py-4 bgblack z-10 transition-all duration-400 ${
+          scrollOffset > 0 ? 'bg-gray-200 opacity-95' : null
+        }`}>
+        <img src={'./assets/alkemy_logo.png'} className="logo" alt="logo" />
+        <h1
+          className={`font-black text-3xl text-gray-200 tracking-widest ${
+            scrollOffset > 0 && 'text-sky-500'
+          }`}>
+          AlkyBank
+        </h1>
         <div
-          className={`flex absolute transform ${toggle} origin-top-right items-end w-60 h-screen fixed top-12 right-0 flex-col gap-8 py-12 pr-8 pl-12 shadow-xl rounded-b-lg ease-in-out transition-all duration-300 bg-gradient-to-tr from-cyan-100 to-cyan-400`}>
+          className={`flex absolute transform ${toggle} origin-top-right items-end w-60 h-screen fixed top-12 right-0 flex-col gap-8 py-12 pr-8 pl-12 shadow-xl rounded-tl-xl ease-in-out transition-all duration-300 bg-gradient-to-tr from-cyan-400 to-cyan-100`}>
           {[
-            ['Home', '/'],
+            ['Balance', '/'],
             ['Carga de Saldo', '/balance/add'],
             ['Gastos', '/balance/spent'],
-            ['Balance', '/balance'],
             ['Movimientos', '/movements'],
             ['Envio de Dinero', '/send'],
             ['Cerrar Sesion', '/login']
@@ -51,7 +60,7 @@ const Header = () => {
                 onClick={() => handleToggle(route)}
                 to={route}
                 key={route}
-                className="rounded-2xl px-4 py-1 hover:bg-gray-600 hover:text-white">
+                className="rounded-2xl px-4 py-1 hover:bg-black hover:text-white">
                 {name}
               </NavLink>
             );
@@ -65,7 +74,7 @@ const Header = () => {
             }`}>
             <div className={`${toggle === open ? null : 'space-y-2'}`}>
               <span
-                className={`block w-8 h-0.5 bg-gray-600 animate-pulse transition ease transform duration-300 ${
+                className={`block w-8 h-0.5 bg-black animate-pulse transition ease transform duration-300 ${
                   toggle === open ? 'rotate-45' : null
                 }`}
               />
@@ -73,11 +82,11 @@ const Header = () => {
                 className={
                   toggle === open
                     ? null
-                    : `block w-8 h-0.5 bg-gray-600 animate-pulse transition ease transform duration-300`
+                    : `block w-8 h-0.5 bg-black animate-pulse transition ease transform duration-300`
                 }
               />
               <span
-                className={`block w-8 h-0.5 bg-gray-600 animate-pulse transition ease transform duration-300 ${
+                className={`block w-8 h-0.5 bg-black animate-pulse transition ease transform duration-300 ${
                   toggle === open ? '-rotate-45 -translate-y-0.5' : null
                 }`}
               />

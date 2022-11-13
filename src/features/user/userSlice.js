@@ -38,10 +38,13 @@ const userSlice = createSlice({
       localStorage.removeItem('account');
       localStorage.removeItem('userToken');
       localStorage.removeItem('user');
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
+    },
+    setSuccess: (state, action) => {
+      state.success = action.payload;
     }
-    /* getAccount: (state, action) => {
-      state.accounts = [...state.accounts, ...action.payload];
-    } */
   },
   extraReducers: (builder) => {
     builder
@@ -101,6 +104,7 @@ const userSlice = createSlice({
       /* Make a deposit in any account */
       .addCase(deposit.fulfilled, (state, action) => {
         state.account.money = action.payload.money;
+        state.success = true;
         state.onMovement = false;
       })
       .addCase(deposit.pending, (state) => {
@@ -117,6 +121,7 @@ const userSlice = createSlice({
       /* Make a withdrawal from the user account modifying it*/
       .addCase(withdraw.fulfilled, (state, action) => {
         state.account.money = action.payload;
+        state.success = true;
         state.onMovement = false;
       })
       .addCase(withdraw.pending, (state) => {
@@ -132,6 +137,7 @@ const userSlice = createSlice({
       })
       /* In case of a withdrawal or deposit on another user account, make a transaction */
       .addCase(transaction.fulfilled, (state, action) => {
+        state.success = true;
         state.onMovement = false;
       })
       .addCase(transaction.pending, (state) => {
@@ -145,6 +151,7 @@ const userSlice = createSlice({
         }
         state.onMovement = false;
       })
+      //Admin Token for restricted API endpoints
       .addCase(adminResponse.fulfilled, (state, action) => {
         state.adminToken = action.payload.accessToken;
       });
@@ -156,10 +163,11 @@ export const selectUser = (state) => state.user.user;
 export const selectUserToken = (state) => state.user.userToken;
 export const selectOnMovement = (state) => state.user.onMovement;
 export const selectError = (state) => state.user.error;
+export const selectSuccess = (state) => state.user.success;
 export const selectAccount = (state) => state.user.account?.id;
 export const selectBalance = (state) => state.user.account?.money;
 export const selectName = (state) => state.user?.user?.first_name;
 
-export const { userLogout } = userSlice.actions;
+export const { userLogout, setError, setSuccess } = userSlice.actions;
 
 export default userSlice.reducer;

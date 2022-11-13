@@ -5,3 +5,15 @@
   box-sizing: border-box;
   height: 100%;
 }
+
+@media (min-width: 770px) {
+  #root {
+    height: calc(100vh - 64px);
+  }
+}
+
+.swal-title {
+  margin: 0px;
+  font-size: 20px;
+  margin-bottom: 28px;
+}
