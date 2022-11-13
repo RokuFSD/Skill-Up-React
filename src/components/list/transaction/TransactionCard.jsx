@@ -45,7 +45,7 @@ function TransactionCard({ id, date, amount, concept, type, to_account_id, accou
           :
           <p>{concept}</p>}
         {
-          editable && !editing ?
+          !editable ? null : editable && !editing ?
             <p className='pt-2 hover:text-blue-400 transition-all hover:cursor-pointer ' onClick={() => handleClick()}>
               <PencilSvg /></p> :
             <div className='flex items-center pt-2 gap-2'>
