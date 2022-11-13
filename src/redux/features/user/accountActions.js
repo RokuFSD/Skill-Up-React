@@ -27,7 +27,7 @@ const accountsPage = async (userId, token, page = '/accounts') => {
 };
 
 export const adminResponse = createAsyncThunk('auth/admin', async () => {
-  const response = await axios.post(`${apiUrl}/auth/login`, {
+  const response = await axios.post(`/api/auth/login`, {
     email: import.meta.env.VITE_ADMIN_USER,
     password: import.meta.env.VITE_ADMIN_PASS
   });
