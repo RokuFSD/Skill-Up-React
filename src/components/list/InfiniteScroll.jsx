@@ -39,7 +39,7 @@ function InfiniteScroll({ page, items, loadMore, hasMore, fetching, element }) {
   return (
     <ItemScroll ref={ref}>
       {items?.length === 0 ? <EmptyList /> : items?.map((item) =>
-        React.cloneElement(element, { key: item.id, ...item }))}
+        React.cloneElement(element, { key: item.id, id:item.id, ...item }))}
     </ItemScroll>
   );
 }
