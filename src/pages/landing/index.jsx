@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function Header() {
   return (
     <header id='header'>
-      <h1 id='logo'><a href='index.html'>Landed</a></h1>
+      <h1 id='logo'><a href='../../../index.html'>Landed</a></h1>
       <nav id='nav'>
         <ul>
           <li><Link to={'/login'} className='button primary'>Login</Link></li>
@@ -24,7 +24,7 @@ function Banner() {
           <p>And there are no hoverboards or flying cars.<br />
             Just apps. Lots of mother flipping apps.</p>
         </header>
-        <span className='image'><img src='../../assets/pic01.jpg' alt='' /></span>
+        <span className='image'><img src='../../../assets/pic01.jpg' alt='' /></span>
       </div>
       <HashLink smooth to='#one' className='gotoNext'>Next</HashLink>
     </section>
@@ -36,14 +36,14 @@ function Footer() {
     <footer id='footer'>
       <ul className='icons'>
         <li><i className='icon fa-brands alt fa-twitter'><span className='label'>Twitter</span></i></li>
-        <li><a href='#' className='icon brands alt fa-facebook-f'><span className='label'>Facebook</span></a>
+        <li><a href='src/pages/landing/index.jsx#' className='icon brands alt fa-facebook-f'><span className='label'>Facebook</span></a>
         </li>
-        <li><a href='#' className='icon brands alt fa-linkedin-in'><span className='label'>LinkedIn</span></a>
+        <li><a href='src/pages/landing/index.jsx#' className='icon brands alt fa-linkedin-in'><span className='label'>LinkedIn</span></a>
         </li>
-        <li><a href='#' className='icon brands alt fa-instagram'><span className='label'>Instagram</span></a>
+        <li><a href='src/pages/landing/index.jsx#' className='icon brands alt fa-instagram'><span className='label'>Instagram</span></a>
         </li>
-        <li><a href='#' className='icon brands alt fa-github'><span className='label'>GitHub</span></a></li>
-        <li><a href='#' className='icon solid alt fa-envelope'><span className='label'>Email</span></a></li>
+        <li><a href='src/pages/landing/index.jsx#' className='icon brands alt fa-github'><span className='label'>GitHub</span></a></li>
+        <li><a href='src/pages/landing/index.jsx#' className='icon solid alt fa-envelope'><span className='label'>Email</span></a></li>
       </ul>
       <ul className='copyright'>
         <li>&copy; Untitled. All rights reserved.</li>
@@ -60,7 +60,7 @@ function Landing() {
       <Header/>
       <Banner />
       <section id='one' className='spotlight style1 bottom bg-one bg-oneUrl'>
-        <span className='image fit main'><img src='../../assets/pic02.jpg'
+        <span className='image fit main'><img src='../../../assets/pic02.jpg'
                                               alt='' /></span>
         <div className='content'>
           <div className='container-unique'>
@@ -92,7 +92,7 @@ function Landing() {
       </section>
 
       <section id='two' className='spotlight style2 right bg-two bg-twoUrl'>
-        <span className='image fit main'><img src='../../assets/pic03.jpg'
+        <span className='image fit main'><img src='../../../assets/pic03.jpg'
                                               alt='' /></span>
         <div className='content'>
           <header>
@@ -103,7 +103,7 @@ function Landing() {
             Integer mi sed nascetur cep aliquet augue varius tempus lobortis porttitor lorem et accumsan consequat
             adipiscing lorem.</p>
           <ul className='actions'>
-            <li><a href='#' className='button'>Learn More</a></li>
+            <li><a href='src/pages/landing/index.jsx#' className='button'>Learn More</a></li>
           </ul>
         </div>
         <HashLink smooth to='#three' className='gotoNext'>Next</HashLink>
@@ -111,7 +111,7 @@ function Landing() {
 
       <section id='three' className='spotlight style3 left bg-three bg-threeUrl'>
         <span className='image git main bottom'><img
-          src='../../assets/pic04.jpg' alt='' /></span>
+          src='../../../assets/pic04.jpg' alt='' /></span>
         <div className='content'>
           <header>
             <h2>Interdum felis blandit praesent sed augue</h2>
@@ -121,7 +121,7 @@ function Landing() {
             Integer mi sed nascetur cep aliquet augue varius tempus lobortis porttitor lorem et accumsan consequat
             adipiscing lorem.</p>
           <ul className='actions'>
-            <li><a href='#' className='button'>Learn More</a></li>
+            <li><a href='src/pages/landing/index.jsx#' className='button'>Learn More</a></li>
           </ul>
         </div>
         <HashLink smooth to='#four' className='gotoNext'>Next</HashLink>
@@ -175,7 +175,7 @@ function Landing() {
           </div>
           <footer className='major'>
             <ul className='actions special'>
-              <li><a href='#' className='button'>Magna sed feugiat</a></li>
+              <li><a href='src/pages/landing/index.jsx#' className='button'>Magna sed feugiat</a></li>
             </ul>
           </footer>
         </div>
@@ -188,7 +188,7 @@ function Landing() {
             <h2>Magna faucibus lorem diam</h2>
             <p>Ante metus praesent faucibus ante integer id accumsan eleifend</p>
           </header>
-          <form method='post' action='#' className='cta'>
+          <form method='post' action='src/pages/landing/index.jsx#' className='cta'>
             <div className='row gtr-uniform gtr-50'>
               <div className='col-8 col-12-xsmall'>
                 <input type='email' name='email' id='email'

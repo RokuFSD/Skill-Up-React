@@ -12,7 +12,7 @@ import Add from './components/add/add';
 import Spent from './components/spent/spent';
 import Send from './components/send/send';
 import Dashboard from './components/dashboard/Dashboard.jsx';
-import Landing from './components/landing/index.jsx';
+import Landing from './pages/landing/index.jsx';
 
 const browserRouter = createBrowserRouter([
     {
