@@ -12,6 +12,7 @@ import Add from './components/add/add';
 import Spent from './components/spent/spent';
 import Send from './components/send/send';
 import Dashboard from './components/dashboard/Dashboard.jsx';
+import Landing from './components/landing/index.jsx';
 
 const browserRouter = createBrowserRouter([
     {
@@ -65,6 +66,11 @@ const browserRouter = createBrowserRouter([
           ]
         }
       ],
+      errorElement: <ErrorPage />
+    },
+    {
+      path: 'home',
+      element: <Landing />,
       errorElement: <ErrorPage />
     }
   ])
