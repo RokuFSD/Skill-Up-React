@@ -31,15 +31,20 @@ function InfiniteScroll({ page, items, loadMore, hasMore, fetching, element }) {
   if (fetching && (items?.length < 2 || !items)) {
     return (
       <ItemScroll ref={null}>
-        {[...Array(5)].map((_, index) => (<SkeletonTransaction key={index} />))}
+        {[...Array(5)].map((_, index) => (
+          <SkeletonTransaction key={index} />
+        ))}
       </ItemScroll>
     );
   }
 
   return (
     <ItemScroll ref={ref}>
-      {items?.length === 0 ? <EmptyList /> : items?.map((item) =>
-        React.cloneElement(element, { key: item.id, ...item }))}
+      {items?.length === 0 ? (
+        <EmptyList />
+      ) : (
+        items?.map((item) => React.cloneElement(element, { key: item.id, id: item.id, ...item }))
+      )}
     </ItemScroll>
   );
 }

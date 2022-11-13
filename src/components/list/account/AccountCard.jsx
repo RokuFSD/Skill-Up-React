@@ -4,16 +4,14 @@ import {
   selectDestinyAccount,
   setDestinyAccount
 } from '../../../features/transaction/transactionSlice.js';
-import { useState } from 'react';
 
-function AccountCard({ userId, userData, handleToggle }) {
+function AccountCard({ id, userData, handleToggle }) {
   const selectedAccount = useSelector(selectDestinyAccount);
-  const [selected, setSelected] = useState(false);
   const dispatch = useDispatch();
 
   function handleClick() {
-    dispatch(setDestinyAccount(userId));
-    handleToggle ? handleToggle() : null;
+    dispatch(setDestinyAccount(id));
+    handleToggle && handleToggle();
   }
 
   return (
@@ -23,7 +21,7 @@ function AccountCard({ userId, userData, handleToggle }) {
     will-change-auto
     hover:cursor-pointer
     hover:scale-95
-    ${selectedAccount === userId ? 'text-blue-600 font-bold' : ''}
+    ${selectedAccount === id ? 'text-blue-600 font-bold' : ''}
      `}
       onClick={() => handleClick()}>
       <div className="bg-neutral-100 flex items-center justify-center rounded-full p-3">
@@ -36,7 +34,7 @@ function AccountCard({ userId, userData, handleToggle }) {
         <p className="text-neutral-700 font-normal">{userData?.email}</p>
       </div>
       <div className="">
-        <p className="text-xs">ID : {userId}</p>
+        <p className="text-xs">ID : {id}</p>
       </div>
     </div>
   );

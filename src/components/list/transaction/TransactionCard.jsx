@@ -57,7 +57,7 @@ function TransactionCard({
         ) : (
           <p>{concept}</p>
         )}
-        {editable && !isTransfer ? (
+        {editable ? (
           !editing ? (
             <p
               className="pt-2 hover:text-blue-400 transition-all hover:cursor-pointer "
@@ -92,8 +92,11 @@ function TransactionCard({
         ) : null}
       </div>
       <div className="text-right w-2/3">
-        <p className={`${isExpense ? 'text-red-400' : 'text-green-500'} font-semibold`}>
-          <span>{isExpense ? '-' : '+'}$</span>
+        <p
+          className={`${
+            isExpense || isTransfer ? 'text-red-400' : 'text-green-500'
+          } font-semibold`}>
+          <span>{isExpense || isTransfer ? '-' : '+'}$</span>
           {amount}
         </p>
         <p className="text-sm">{formatDate(date)}</p>

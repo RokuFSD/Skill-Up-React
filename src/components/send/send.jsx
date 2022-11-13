@@ -18,8 +18,8 @@ const Send = () => {
 
   const destinyAccount = useSelector(selectDestinyAccount);
   return (
-    <MoneyForm screen="send" destinyAccount={destinyAccount}>
-      <>
+    <>
+      <MoneyForm screen="send" destinyAccount={destinyAccount}>
         {screen === 'PORTRAIT' ? (
           <>
             <Button type="primary" onClick={handleToggle}>
@@ -34,8 +34,8 @@ const Send = () => {
         ) : (
           <SendPage />
         )}
-      </>
-    </MoneyForm>
+      </MoneyForm>
+    </>
   );
 };
 
