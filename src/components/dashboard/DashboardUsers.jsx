@@ -1,12 +1,15 @@
 import UserCard from './UserCard.jsx';
 import SkeletonUser from '../skeleton/SkeletonUser.jsx';
+import useDimensions from '../../utils/useDimensions.js';
 
 function DashboardUsers({ isFetching, accounts }) {
+  const { height, width } = useDimensions();
+
   if (isFetching) {
     return (
-      <div className='flex w-full'>
-        {[...Array(4)].map((_, index) => (
-          <SkeletonUser key={index}/>
+      <div className="flex w-full">
+        {[...Array(3)].map((_, index) => (
+          <SkeletonUser key={index} />
         ))}
       </div>
     );
@@ -22,14 +25,18 @@ function DashboardUsers({ isFetching, accounts }) {
     );
   }
   return (
-    <div className='flex w-full'>
-      {accounts?.map((account) => (
-          <UserCard key={account.id} {...account} />
-        )
-      )}
+    <div className="flex w-full">
+      {accounts?.map((account, index) => {
+        if (width < 350) {
+          while (index < 3) {
+            return <UserCard key={account.id} {...account} />;
+          }
+        } else {
+          return <UserCard key={account.id} {...account} />;
+        }
+      })}
     </div>
   );
 }
 
 export default DashboardUsers;
-
