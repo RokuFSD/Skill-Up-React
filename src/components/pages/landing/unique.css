@@ -2214,10 +2214,6 @@ ul.actions.fit.stacked {
     padding-top: 0;
   }
 
-  input {
-    padding: 1rem 2.5rem !important;
-  }
-
   ul.actions:not(.fixed) li input[type='submit'],
   ul.actions:not(.fixed) li input[type='reset'],
   ul.actions:not(.fixed) li input[type='button'],
@@ -3073,27 +3069,10 @@ body.is-touch #banner {
 
 /* XLarge */
 
-@media screen and (max-width: 1680px) {
-  /* Basic */
-  body,
-  input,
-  select,
-  textarea {
-    font-size: 13pt;
-  }
-}
 
 /* Large */
 
 @media screen and (max-width: 1280px) {
-  /* Basic */
-  body,
-  input,
-  select,
-  textarea {
-    font-size: 11.5pt;
-  }
-
   /* Spotlight */
   .spotlight.top .content {
     padding: 3.825em 0 1.825em 0;
@@ -3134,12 +3113,6 @@ body.is-touch #banner {
 
 @media screen and (max-width: 980px) {
   /* Basic */
-  body,
-  input,
-  select,
-  textarea {
-    font-size: 12pt;
-  }
 
   /* Spotlight */
   .spotlight {
