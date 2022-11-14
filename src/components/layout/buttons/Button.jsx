@@ -33,10 +33,10 @@ function Button({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={`inline-flex items-center justify-center p-0 text-base font-medium text-center  rounded-lg shadow-sm cursor-pointer ${
+      className={`flex items-center justify-center p-0 text-base font-medium text-center  rounded-lg shadow-sm cursor-pointer ${
         disabled || loading ? styles.disabled : styles[style]
       } ${extraClasses}`}>
-      <span className="relative flex gap-2">
+      <span className="relative flex gap-2 items-center">
         {loading ? (
           <>
             <Loader /> Loading...
