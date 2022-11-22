@@ -40,7 +40,7 @@ export const authRegister = createAsyncThunk(
         last_name: lastName,
         email,
         password,
-        roleId: 2,
+        roleId: 1,
         points: 0
       });
       const loginResponse = await dispatch(authLogin({ email, password }));
